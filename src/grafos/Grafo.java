@@ -19,22 +19,34 @@ public class Grafo {
 	}
 	
 	public static void main(String args[]){
-		Grafo grafito=new Grafo();
-		
+		Grafo grafito=new Grafo(10);
+		//System.out.println(grafito.randomRandom(0.5));
+		System.out.println(grafito.randomCalculado(0.70));
+		grafito.mostrarMatrizAdy();
 	}
 	
-	public void randomRandom(float pAdyacencia){
-		double value;
+	public void mostrarMatrizAdy() {
+		mat_ady.mostrarMatriz();
+	}
+	
+	public double randomRandom(double d){
+		double value, realAd=0;
 		for(int i=0;i<this.cant_nodos-1;i++){
 			for(int j=i+1;j<this.cant_nodos;j++){
 				value=Math.random();
-				if(value<=pAdyacencia)
+				if(value<=d) {
 					mat_ady.setAdyacencia(i, j);
+					realAd++;
+				}
 			}
 		}
+		return 2*(realAd/(this.cant_nodos*this.cant_nodos-1));
 	}
 	
-	public void randomCalculado(float pAdyacencia){
-		
+	public double randomCalculado(double d){
+		return mat_ady.randomCalculado(d);
 	}
+	
+	
+	
 }
