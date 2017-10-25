@@ -1,5 +1,11 @@
 package grafos;
 
+/**
+ * Es una estructura donde guarda una celda
+ * (fila y columna o i y j) con un random asociado
+ * @author laboratorios
+ *
+ */
 public class PosicionConRandom {
 	private int f,c;
 	private double random;
