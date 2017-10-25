@@ -4,44 +4,44 @@ public class MatrizSimetrica {
 
 	private boolean[] vec;
 	private int grado;
-	private int cant_valores;
+	//private int cant_valores;
 	
 	public MatrizSimetrica(int grado){
-		this.grado=grado;
-		this.cant_valores=grado*(grado - 1)/2;
-		this.vec= new boolean[this.cant_valores];
-		for(int i=0;i<this.cant_valores;i++)
+		this.grado = grado;
+		//this.cant_valores=grado*(grado - 1)/2;
+		this.vec= new boolean[grado*(grado - 1)/2];
+		/*for(int i=0; i<this.cant_valores;i++)
 			this.vec[i]=false;
+		*/
+	}
+	
+	private int formulaMagica(int fila, int columna) {
+		if(fila>columna)
+			return columna*this.grado+fila-(columna*columna+3*columna+2)/2;
+		return fila*this.grado+columna-(fila*fila+3*fila+2)/2;
 	}
 	
 	public boolean getAdyacencia(int f,int c){
-		if(f>c){
-			return this.vec[c*this.grado+f-(c*c+3*c+2)/2];
-		}
-		return this.vec[f*this.grado+c-(f*f+3*f+2)/2];
+		return this.vec[formulaMagica(f,c)];
 	}
 	
 	public void setAdyacencia(int f, int c){
-		if(f>c){
-			this.vec[c*this.grado+f-(c*c+3*c+2)/2]=true;
-		}
-		this.vec[f*this.grado+c-(f*f+3*f+2)/2]=true;
+		this.vec[formulaMagica(f,c)] = true;
 	}
 	
 	public void unsetAdyacencia(int f, int c){
-		if(f>c){
-			this.vec[c*this.grado+f-(c*c+3*c+2)/2]=false;
-		}
-		this.vec[f*this.grado+c-(f*f+3*f+2)/2]=false;
+		this.vec[formulaMagica(f,c)] = false;
 	}
 	
 	public void mostrarMatriz(){
-		for(int f=0;f<this.grado-1;f++){
-			for(int c=f+1;c<this.grado;c++)
-				System.out.print(this.vec[f*this.grado+c-(f*f+3*f+2)/2] + "\t");
+		for(int f=0; f < this.grado-1; f++){
+			for(int c=f+1; c < this.grado; c++)
+				System.out.print( this.vec[formulaMagica(f,c)] + "\t");
 			System.out.println();
 		}
 	}
+	
+	/*
 	public double randomCalculado(double pAdyacencia){
 		PosicionConRandom[] posis=new PosicionConRandom[this.cant_valores];
 		int k=0;
@@ -69,7 +69,7 @@ public class MatrizSimetrica {
 		}
 		return (double)valCorte/this.cant_valores;
 	}
-	
+	*/
 }
 
 
