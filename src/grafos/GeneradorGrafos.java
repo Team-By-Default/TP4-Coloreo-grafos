@@ -1,5 +1,6 @@
 package grafos;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -17,8 +18,9 @@ public class GeneradorGrafos {
 	 * @param path: ruta del archivo
 	 * @throws PorcentajeException 
 	 * @throws NodosException 
+	 * @throws IOException 
 	 */
-	public static void aleatorioPorAdy(int cantNodos, double porcentaje, String path) throws PorcentajeException, NodosException{
+	public static void aleatorioPorAdy(int cantNodos, double porcentaje, String path) throws PorcentajeException, NodosException, IOException{
 		Grafo grafo = new Grafo(cantNodos);
 		
 		if(porcentaje < 0 || porcentaje > 1 )
@@ -54,8 +56,9 @@ public class GeneradorGrafos {
 	 * @param path: ruta del archivo
 	 * @throws NodosException
 	 * @throws PorcentajeException
+	 * @throws IOException 
 	 */
-	public static void aleatorioPorProb(int cantNodos, double probabilidad, String path) throws NodosException, PorcentajeException {
+	public static void aleatorioPorProb(int cantNodos, double probabilidad, String path) throws NodosException, PorcentajeException, IOException {
 		Grafo grafo = new Grafo(cantNodos);
 		
 		if(probabilidad < 0 || probabilidad > 1 )
@@ -83,8 +86,9 @@ public class GeneradorGrafos {
 	 * @throws NodosException
 	 * @throws PorcentajeException
 	 * @throws GradoException 
+	 * @throws IOException 
 	 */
-	public static void regularPorAdyacencia(int cantNodos, double porcentajeAdya, String path) throws NodosException, PorcentajeException, GradoException {
+	public static void regularPorAdyacencia(int cantNodos, double porcentajeAdya, String path) throws NodosException, PorcentajeException, GradoException, IOException {
 
 		if(porcentajeAdya < 0 || porcentajeAdya > 1 )
 			throw new PorcentajeException("Valor porcentual incorrecto");
@@ -137,7 +141,7 @@ public class GeneradorGrafos {
 		*/
 	}
 	
-	public static void regularGrado(int cantNodos, int grado, String path) throws NodosException, GradoException {
+	public static void regularGrado(int cantNodos, int grado, String path) throws NodosException, GradoException, IOException {
 		Grafo grafo = new Grafo(cantNodos);
 		
 		if(grado<0 || cantNodos<=grado || ( cantNodos%2==1 && grado%2==1 ) )
