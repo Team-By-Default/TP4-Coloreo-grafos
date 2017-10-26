@@ -2,7 +2,7 @@ package grafos;
 
 public class Grafo {
 
-	protected MatrizSimetrica matAdy;
+	private MatrizSimetrica matAdy;
 	private static final int CANTNODOS=5;
 	protected int cantNodos;
 	
@@ -17,12 +17,25 @@ public class Grafo {
 		
 	}
 	
+	public void grabarArchivo(String path){
+		
+	}
+	
 	public void mostrarMatrizAdy() {
 		matAdy.mostrarMatriz();
 	}
 	
 	public double getPorcentajeAdyReal() {
 		return (double)this.matAdy.getCantAdyacencias()/(this.cantNodos*(this.cantNodos-1)/2);
+	}
+	
+	/**
+	 * Setea una arista entre dos nodos. El 1° nodo es el nodo 0
+	 * @param nodo1: numero de nodo
+	 * @param nodo2: numero de nodo
+	 */
+	public void setArista(int nodo1, int nodo2){
+		this.matAdy.setAdyacencia(nodo1-1, nodo2-1);
 	}
 	
 	//Valeria imponiendo autoridad (?
