@@ -35,7 +35,7 @@ public class Grafo {
 	 * @param nodo2: numero de nodo
 	 */
 	public void setArista(int nodo1, int nodo2){
-		this.matAdy.setAdyacencia(nodo1-1, nodo2-1);
+		this.matAdy.setAdyacencia(nodo1, nodo2);
 	}
 	
 	//Valeria imponiendo autoridad (?
@@ -66,7 +66,7 @@ public class Grafo {
 		//System.out.println(grafito.randomCalculado(0.70));
 		grafito.mostrarMatrizAdy();
 		System.out.println();
-		grafito = new GrafoAleatorioPorcentajeAdy(6, 0.7);
+		/*grafito = new GrafoAleatorioPorcentajeAdy(6, 0.7);
 		grafito.mostrarMatrizAdy();
 		System.out.println();
 		grafito = new GrafoAleatorioProb(6, 0.7);
@@ -78,7 +78,7 @@ public class Grafo {
 		grafito = new GrafoRegularAdy(5, 0.5);
 		grafito.mostrarMatrizAdy();
 		System.out.println(grafito.getPorcentajeAdyReal());
-		
+		*/
 	}
 	
 }
