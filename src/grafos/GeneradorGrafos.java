@@ -85,29 +85,41 @@ public class GeneradorGrafos {
 	 * @throws GradoException 
 	 */
 	public static void regularPorAdyacencia(int cantNodos, double porcentajeAdya, String path) throws NodosException, PorcentajeException, GradoException {
-		Grafo grafo = new Grafo(cantNodos);
 
 		if(porcentajeAdya < 0 || porcentajeAdya > 1 )
 			throw new PorcentajeException("Valor porcentual incorrecto");
 		
 		double adyReal=0;
-		int suma = 0, aSumar, salto, grado = 0;
+		int suma = 0, aSumar, salto=1, grado = 0;
 		int maxAristas = cantNodos*(cantNodos-1)/2;
+		
+		/*
+		 * Si cantNodos es par, el salto es 1 y aSumar es la mitad de cantNodos
+		 * Si cantNodos es impar, el salto es 2 y aSumar es cantNodos redondo
+		 */
+		salto += cantNodos%2;
+		aSumar = cantNodos*salto/2;
+		
+		/* Version anterior
 		if(cantNodos%2 == 0) {
 			aSumar = cantNodos/2;
 			salto = 1;
 		}else {
-			aSumar=cantNodos;
-			salto=2;
+			aSumar = cantNodos;
+			salto = 2;
 		}
+		*/
+		
 		while(adyReal < porcentajeAdya) {
-			suma+=aSumar;
-			adyReal=(double)suma/maxAristas;
-			grado+=salto;
+			suma += aSumar;
+			adyReal = (double)suma/maxAristas;
+			grado += salto;
 		}
 		
+		//Con lo anterior definimos el grado, ahora es hacer un grafo regular a partir de ese grado
 		regularGrado(cantNodos, grado, path);
-		/*
+		
+		/* Version anterior
 		//Aca podria reutilizar el codigo directamente de GrafoRegularGrado, pero no se me ocurre como
 		if(grado%2==1) {
 			for(int n=0 ; n < cantNodos/2 ; n++)
