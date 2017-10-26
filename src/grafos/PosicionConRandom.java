@@ -16,11 +16,12 @@ public class PosicionConRandom implements Comparable<PosicionConRandom>{
 		this.columna = columna;
 		this.random = new Double(rnd);
 	}
-	
+	//Innecesario gracais al compareTo
+	/*
 	public boolean mayorA(PosicionConRandom that){
 		return this.random > that.random; 
 	}
-	
+	*/
 	public int getF(){
 		return this.fila;
 	}

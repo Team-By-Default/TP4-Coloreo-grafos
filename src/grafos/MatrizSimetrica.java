@@ -15,7 +15,7 @@ public class MatrizSimetrica {
 		*/
 	}
 	
-	private int formulaMagica(int fila, int columna) {
+	private int formulaMagica(int fila, int columna) {//nombres serios por favor, no es para lucas esto xD
 		if(fila>columna)
 			return columna*this.grado+fila-(columna*columna+3*columna+2)/2;
 		return fila*this.grado+columna-(fila*fila+3*fila+2)/2;
@@ -34,12 +34,17 @@ public class MatrizSimetrica {
 	}
 	
 	public void mostrarMatriz(){
-		for(int f=0; f < this.grado-1; f++){
+		for(int f=0; f < this.grado; f++){
+			for(int c=1; c <= f ; c++)
+				System.out.print("\t");
+			System.out.print(" N/A    ");
 			for(int c=f+1; c < this.grado; c++)
 				System.out.print( this.vec[formulaMagica(f,c)] + "\t");
 			System.out.println();
 		}
 	}
+	
+	//Valeria....dinkleberg.jpg....
 	
 	/*
 	public double randomCalculado(double pAdyacencia){

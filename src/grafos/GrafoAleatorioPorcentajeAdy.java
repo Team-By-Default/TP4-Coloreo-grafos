@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class GrafoAleatorioPorcentajeAdy extends Grafo {
 	
-	public GrafoAleatorioPorcentajeAdy (int cantNodos, double porcentaje) {
+	public GrafoAleatorioPorcentajeAdy (int cantNodos, double porcentaje) throws NodosException {
 		super(cantNodos);
 		
 		Random rnd = new Random();
@@ -22,8 +22,8 @@ public class GrafoAleatorioPorcentajeAdy extends Grafo {
 		
 		final int cantAristas = (int) (k * porcentaje);
 		for(int i=0; i < cantAristas; i++) {
-			super.matAdy.setAdyacencia(posis[i].getF(), 
-					posis[i].getC());
+			super.matAdy.setAdyacencia(	posis[i].getF(), 
+										posis[i].getC());
 		}
 	}
 }

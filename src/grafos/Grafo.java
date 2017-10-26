@@ -1,7 +1,5 @@
 package grafos;
 
-import java.util.Random;
-
 public class Grafo {
 
 	protected MatrizSimetrica matAdy;
@@ -10,17 +8,21 @@ public class Grafo {
 	
 	public Grafo(){
 		this.cantNodos = CANTNODOS;
-		this.matAdy = new MatrizSimetrica(CANTNODOS + 1);
+		this.matAdy = new MatrizSimetrica(CANTNODOS);
 	}
 	
-	public Grafo(int cant_nodos){
+	public Grafo(int cant_nodos) throws NodosException{
+		if(cant_nodos<1)
+			throw new NodosException("La cantidad de nodos debe ser superior a 0.");
 		this.cantNodos = cant_nodos;
-		this.matAdy = new MatrizSimetrica(this.cantNodos + 1);
+		this.matAdy = new MatrizSimetrica(this.cantNodos);
 	}
 	
 	public void mostrarMatrizAdy() {
 		matAdy.mostrarMatriz();
 	}
+	
+	//Valeria imponiendo autoridad (?
 	
 	/* Grafo aleatorio por probabilidad se genera con GrafoAleatorioProb
 	public double randomRandom(double d){
@@ -42,7 +44,7 @@ public class Grafo {
 	}
 	*/
 	
-	public static void main(String args[]){
+	public static void main(String args[]) throws NodosException, GradoException{
 		Grafo grafito=new Grafo(10);
 		//System.out.println(grafito.randomRandom(0.5));
 		//System.out.println(grafito.randomCalculado(0.70));
@@ -52,6 +54,9 @@ public class Grafo {
 		grafito.mostrarMatrizAdy();
 		System.out.println();
 		grafito = new GrafoAleatorioProb(6, 0.7);
+		grafito.mostrarMatrizAdy();
+		System.out.println();
+		grafito = new GrafoRegularGrado(6, 4);
 		grafito.mostrarMatrizAdy();
 	}
 	

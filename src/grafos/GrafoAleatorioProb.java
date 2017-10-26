@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class GrafoAleatorioProb extends Grafo{
 	
-	public GrafoAleatorioProb(int cantNodos, double probabilidad) {
+	public GrafoAleatorioProb(int cantNodos, double probabilidad) throws NodosException {
 		super(cantNodos);
 		
 		Random rnd = new Random();
