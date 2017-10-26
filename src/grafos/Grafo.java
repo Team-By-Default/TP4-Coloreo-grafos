@@ -3,7 +3,6 @@ package grafos;
 public class Grafo {
 
 	private MatrizSimetrica matAdy;
-	private static final int CANTNODOS=5;
 	protected int cantNodos;
 	
 	public Grafo(int cantNodos) throws NodosException{
