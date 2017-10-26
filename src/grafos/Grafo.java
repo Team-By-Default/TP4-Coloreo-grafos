@@ -6,16 +6,15 @@ public class Grafo {
 	private static final int CANTNODOS=5;
 	protected int cantNodos;
 	
-	public Grafo(){
-		this.cantNodos = CANTNODOS;
-		this.matAdy = new MatrizSimetrica(CANTNODOS);
-	}
-	
 	public Grafo(int cantNodos) throws NodosException{
 		if(cantNodos<1)
 			throw new NodosException("La cantidad de nodos debe ser superior a 0.");
 		this.cantNodos = cantNodos;
 		this.matAdy = new MatrizSimetrica(this.cantNodos);
+	}
+	
+	public Grafo(String path){
+		
 	}
 	
 	public void mostrarMatrizAdy() {
