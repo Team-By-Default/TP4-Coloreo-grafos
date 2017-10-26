@@ -161,4 +161,31 @@ public class GeneradorGrafos {
 		
 		grafo.grabarArchivo(path);
 	}
+	
+	/**
+	 * 
+	 * @param cantNodos cantidad de nodos que compondran el grafo.
+	 * @param k cantidad de conjuntos de nodos disconjuntos entre si.
+	 * @throws NodosException 
+	 */
+	public static void kPartito(int cantNodos, int k, String path) throws NodosException{
+		int[] pertenencia = new int[cantNodos]; //vector que guarda a que conjunto pertenece cada nodo
+		Grafo grafo = new Grafo(cantNodos);
+		int conj=0;
+		for(int i=0; i<cantNodos; i++){
+			if(conj==k)
+				conj=0;
+			pertenencia[i]=conj;
+			conj++;
+		}
+		//recorro cada conjunto posible de nodos
+		for(int i=0;i<cantNodos-1;i++){
+			for(int j=i+1;j<cantNodos;j++){
+				// si no pertenecen al mismo conj, entonces les asigno una arista.
+				if(pertenencia[i]!=pertenencia[j]) 
+					grafo.setArista(i,j);
+			}
+		}
+		grafo.grabarArchivo(path);
+	}
 }
