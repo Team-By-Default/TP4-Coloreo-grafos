@@ -33,6 +33,15 @@ public class MatrizSimetrica {
 		this.vec[formulaMagica(f,c)] = false;
 	}
 	
+	public int getCantAdyacencias() {
+		int aux=0;
+		for(boolean bool : this.vec) {
+			if(bool)
+				aux++;
+		}
+		return aux;
+	}
+	
 	public void mostrarMatriz(){
 		for(int f=0; f < this.grado; f++){
 			for(int c=1; c <= f ; c++)

@@ -4,8 +4,12 @@ import java.util.Random;
 
 public class GrafoAleatorioProb extends Grafo{
 	
-	public GrafoAleatorioProb(int cantNodos, double probabilidad) throws NodosException {
+	public GrafoAleatorioProb(int cantNodos, double probabilidad) throws NodosException, PorcentajeException {
 		super(cantNodos);
+		
+		if(probabilidad < 0 || probabilidad > 1 )
+			throw new PorcentajeException("Valor porcentual incorrecto");
+		
 		
 		Random rnd = new Random();
 		for(int i = 0; i < super.cantNodos-1; i++){

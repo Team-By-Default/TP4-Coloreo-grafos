@@ -11,15 +11,19 @@ public class Grafo {
 		this.matAdy = new MatrizSimetrica(CANTNODOS);
 	}
 	
-	public Grafo(int cant_nodos) throws NodosException{
-		if(cant_nodos<1)
+	public Grafo(int cantNodos) throws NodosException{
+		if(cantNodos<1)
 			throw new NodosException("La cantidad de nodos debe ser superior a 0.");
-		this.cantNodos = cant_nodos;
+		this.cantNodos = cantNodos;
 		this.matAdy = new MatrizSimetrica(this.cantNodos);
 	}
 	
 	public void mostrarMatrizAdy() {
 		matAdy.mostrarMatriz();
+	}
+	
+	public double getPorcentajeAdyReal() {
+		return (double)this.matAdy.getCantAdyacencias()/(this.cantNodos*(this.cantNodos-1)/2);
 	}
 	
 	//Valeria imponiendo autoridad (?
@@ -44,7 +48,7 @@ public class Grafo {
 	}
 	*/
 	
-	public static void main(String args[]) throws NodosException, GradoException{
+	public static void main(String args[]) throws NodosException, GradoException, PorcentajeException{
 		Grafo grafito=new Grafo(10);
 		//System.out.println(grafito.randomRandom(0.5));
 		//System.out.println(grafito.randomCalculado(0.70));
@@ -56,8 +60,13 @@ public class Grafo {
 		grafito = new GrafoAleatorioProb(6, 0.7);
 		grafito.mostrarMatrizAdy();
 		System.out.println();
-		grafito = new GrafoRegularGrado(6, 4);
+		grafito = new GrafoRegularGrado(5, 2);
 		grafito.mostrarMatrizAdy();
+		System.out.println(grafito.getPorcentajeAdyReal());
+		grafito = new GrafoRegularAdy(5, 0.5);
+		grafito.mostrarMatrizAdy();
+		System.out.println(grafito.getPorcentajeAdyReal());
+		
 	}
 	
 }
