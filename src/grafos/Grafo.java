@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Grafo {
@@ -25,6 +26,7 @@ public class Grafo {
 	 */
 	public Grafo(String path) throws FileNotFoundException{
 		Scanner archie = new Scanner(new File(path));
+		archie.useLocale(Locale.ENGLISH);
 		
 		this.cantNodos = archie.nextInt();
 		this.matAdy = new MatrizSimetrica(this.cantNodos);
@@ -54,7 +56,7 @@ public class Grafo {
 		for(int i=0; i<this.cantNodos-1; i++)
 			for(int j=i+1; j<this.cantNodos; j++)
 				if(this.matAdy.getAdyacencia(i, j))
-					arch.println(i+1 + " " + j+1);
+					arch.println(i+1 + " " + (j+1));
 
 		arch.close();
 	}
