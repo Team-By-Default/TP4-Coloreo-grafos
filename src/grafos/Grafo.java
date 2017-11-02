@@ -143,7 +143,7 @@ public class Grafo {
 	}
 	
 	/**
-	 * Setea una arista entre dos nodos. El 1° nodo es el nodo 0
+	 * Setea una arista entre dos nodos. El 1ï¿½ nodo es el nodo 0
 	 * @param nodo1: numero de nodo
 	 * @param nodo2: numero de nodo
 	 */

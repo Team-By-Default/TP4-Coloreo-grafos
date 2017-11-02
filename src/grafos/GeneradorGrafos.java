@@ -155,7 +155,7 @@ public class GeneradorGrafos {
 		int aux=grado/2;
 		for(int n=1 ; n <= aux ; n++) {
 			for(int i=0 ; i < cantNodos ; i++) {
-				grafo.setArista( i , n % cantNodos );
+				grafo.setArista( i , (i+n) % cantNodos );
 			}
 		}
 		
