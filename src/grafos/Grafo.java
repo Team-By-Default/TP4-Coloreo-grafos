@@ -155,7 +155,7 @@ public class Grafo {
 		return this.cantNodos;
 	}
 	
-	public static void main(String args[]) throws NodosException, GradoException, PorcentajeException{
+	/*public static void main(String args[]) throws NodosException, GradoException, PorcentajeException{
 		Grafo grafito=new Grafo(10);
 		//System.out.println(grafito.randomRandom(0.5));
 		//System.out.println(grafito.randomCalculado(0.70));
@@ -178,6 +178,6 @@ public class Grafo {
 		grafito.mostrarMatrizAdy();
 		System.out.println(grafito.getPorcentajeAdyReal());
 		
-	}
+	}*/
 	
 }
