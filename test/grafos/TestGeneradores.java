@@ -86,11 +86,55 @@ public class TestGeneradores {
 	}
 	
 	@Test
-	public void regularException() throws NodosException, IOException{
+	public void regularException1() throws NodosException, IOException{
 		boolean exc = false;
 		try {
 			GeneradorGrafos.regularGrado(5, 3, "./regularGrado.in");
 		} catch (GradoException e) {
+			exc = true;
+		}
+		Assert.assertEquals(true, exc);
+	}
+	
+	@Test
+	public void regularException2() throws NodosException, IOException{
+		boolean exc = false;
+		try {
+			GeneradorGrafos.regularGrado(5, -3, "./regularGrado.in");
+		} catch (GradoException e) {
+			exc = true;
+		}
+		Assert.assertEquals(true, exc);
+	}
+	
+	@Test
+	public void regularException3() throws NodosException, IOException{
+		boolean exc = false;
+		try {
+			GeneradorGrafos.regularGrado(5, 5, "./regularGrado.in");
+		} catch (GradoException e) {
+			exc = true;
+		}
+		Assert.assertEquals(true, exc);
+	}
+	
+	@Test
+	public void regularAdyException0() throws NodosException, IOException, GradoException{
+		boolean exc = false;
+		try {
+			GeneradorGrafos.regularPorAdyacencia(5, -0.5, "./regularPorAdy.in");
+		} catch (PorcentajeException e) {
+			exc = true;
+		}
+		Assert.assertEquals(true, exc);
+	}
+	
+	@Test
+	public void regularAdyException1() throws NodosException, IOException, GradoException{
+		boolean exc = false;
+		try {
+			GeneradorGrafos.regularPorAdyacencia(5, 1.5, "./regularPorAdy.in");
+		} catch (PorcentajeException e) {
 			exc = true;
 		}
 		Assert.assertEquals(true, exc);
