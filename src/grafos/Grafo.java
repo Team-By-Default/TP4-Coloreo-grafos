@@ -78,7 +78,7 @@ public class Grafo {
 	 * @param nodo: numero de nodo
 	 * @return cantidad de aristas o grado
 	 */
-	private int getGradoNodo(int nodo){
+	public int getGradoNodo(int nodo){
 		int cont=0;
 		for(int i=0; i<this.cantNodos; i++){
 			if(this.matAdy.getAdyacencia(nodo, i))
@@ -143,7 +143,7 @@ public class Grafo {
 	}
 	
 	/**
-	 * Setea una arista entre dos nodos. El 1° nodo es el nodo 0
+	 * Setea una arista entre dos nodos. El 1ï¿½ nodo es el nodo 0
 	 * @param nodo1: numero de nodo
 	 * @param nodo2: numero de nodo
 	 */
