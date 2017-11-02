@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Locale;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -26,6 +27,7 @@ public class Grafo{
 	 */
 	public Grafo(String path) throws FileNotFoundException{
 		Scanner archie = new Scanner(new File(path));
+		archie.useLocale(Locale.ENGLISH);
 		
 		this.cantNodos = archie.nextInt();
 		this.matAdy = new MatrizSimetrica(this.cantNodos);
@@ -55,7 +57,7 @@ public class Grafo{
 		for(int i=0; i<this.cantNodos-1; i++)
 			for(int j=i+1; j<this.cantNodos; j++)
 				if(this.matAdy.getAdyacencia(i, j))
-					arch.println(i+1 + " " + j+1);
+					arch.println(i+1 + " " + (j+1));
 
 		arch.close();
 	}
@@ -77,7 +79,7 @@ public class Grafo{
 	 * @param nodo: numero de nodo
 	 * @return cantidad de aristas o grado
 	 */
-	private int getGradoNodo(int nodo){
+	public int getGradoNodo(int nodo){
 		int cont=0;
 		for(int i=0; i<this.cantNodos; i++){
 			if(this.matAdy.getAdyacencia(nodo, i))
@@ -142,7 +144,7 @@ public class Grafo{
 	}
 	
 	/**
-	 * Setea una arista entre dos nodos. El 1° nodo es el nodo 0
+	 * Setea una arista entre dos nodos. El 1ï¿½ nodo es el nodo 0
 	 * @param nodo1: numero de nodo
 	 * @param nodo2: numero de nodo
 	 */
@@ -150,21 +152,8 @@ public class Grafo{
 		this.matAdy.setAdyacencia(nodo1, nodo2);
 	}
 	
-	//Valeria imponiendo autoridad (?
-	
-	/* Grafo aleatorio por probabilidad se genera con GrafoAleatorioProb
-	public double randomRandom(double d){
-		double value, realAd=0;
-		for(int i=0;i<this.cantNodos-1;i++){
-			for(int j=i+1;j<this.cantNodos;j++){
-				value=Math.random();
-				if(value<=d) {
-					matAdy.setAdyacencia(i, j);
-					realAd++;
-				}
-			}
-		}
-		return 2*(realAd/(this.cantNodos*this.cantNodos-1));
+	public int getCantNodos(){
+		return this.cantNodos;
 	}
 	
 	public double randomCalculado(double d){
@@ -172,7 +161,7 @@ public class Grafo{
 	}
 	*/
 	/**
-	 * Algoritmo de Coloración de Welsh y Powell 
+	 * Algoritmo de Coloraciï¿½n de Welsh y Powell 
 	 * @throws IOException 
 	 */
 	public void ColoreoWelshPowell(String path) throws IOException{
@@ -208,7 +197,7 @@ public class Grafo{
 		int coloreados=0,color=0,j;
 		//mientras haya nodos sin color sigue coloreando.
 		while(coloreados < this.cantNodos){
-			//tomo el menor color y coloreo todos los nodos que pueda con él.
+			//tomo el menor color y coloreo todos los nodos que pueda con ï¿½l.
 			for(int i=0; i<this.cantNodos; i++){
 				//si no esta coloreado, me fijo si lo puedo colorear con el color actual.
 				if(vertices[i].getColor() == null){

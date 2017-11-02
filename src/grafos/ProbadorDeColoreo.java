@@ -1,32 +1,31 @@
 package grafos;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class ProbadorDeColoreo {
 
-	public boolean probadorDeColoreo(String pathIn, String pathOut) throws FileNotFoundException{
+	public static boolean probar(String pathIn, String pathOut) throws FileNotFoundException{
 		Grafo grafo = new Grafo(pathIn);
 		Scanner sc = new Scanner(new File(pathOut));
-		if(sc.nextInt() != grafo.cantNodos){
-			System.out.println("ERROR: la cantidad de nodos es diferente en el archivo de entrada y de salida.");
-			sc.close();
-			return false;
-		}
+		sc.useLocale(Locale.ENGLISH);
+		int cantNodosColoreados = sc.nextInt();
 		int cantColores= sc.nextInt();
 		if(cantColores>grafo.cantNodos){
 			System.out.println("ERROR: hay más colores que nodos");
 			sc.close();
 			return false;
 		}
+		sc.nextInt(); //Cant. aristas
 		sc.nextDouble(); //Porcentaje Ady (N/A)
 		sc.nextInt(); //Grado max (N/A)
 		sc.nextInt(); //Grado min (N/A)
 		HashMap<Integer,Integer> coloreado = new HashMap<Integer,Integer>(grafo.cantNodos);
 		Integer colorPrevio,color,nodo;
-		while(sc.hasNextLine()){
+		for(int i = 0; i < cantNodosColoreados; i++){
 			nodo=sc.nextInt();
 			color=sc.nextInt();
 			colorPrevio=coloreado.put(nodo, color);
