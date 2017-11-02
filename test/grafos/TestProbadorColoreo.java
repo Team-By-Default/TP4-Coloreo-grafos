@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import org.junit.Assert;
 
-public class TestColoreo {
+public class TestProbadorColoreo {
 	private String path = "./Pruebas probador coloreo/";
 	
 	@Test
@@ -31,5 +31,29 @@ public class TestColoreo {
 	public void coloresSeguidos() throws FileNotFoundException{
 		String nombre = path + "ColoresSeguidos";
 		Assert.assertEquals(false, ProbadorDeColoreo.probar(nombre + ".in", nombre + ".out"));
+	}
+	
+	@Test
+	public void faltaColorear1() throws FileNotFoundException{
+		String nombre = path + "FaltaColorear1";
+		Assert.assertEquals(false, ProbadorDeColoreo.probar(nombre + ".in", nombre + ".out"));
+	}
+	
+	@Test
+	public void faltaColorear2() throws FileNotFoundException{
+		String nombre = path + "FaltaColorear2";
+		Assert.assertEquals(false, ProbadorDeColoreo.probar(nombre + ".in", nombre + ".out"));
+	}
+	
+	@Test
+	public void nodoRepFalse() throws FileNotFoundException{
+		String nombre = path + "NodoRepFalse";
+		Assert.assertEquals(false, ProbadorDeColoreo.probar(nombre + ".in", nombre + ".out"));
+	}
+	
+	@Test
+	public void nodoRepTrue() throws FileNotFoundException{
+		String nombre = path + "NodoRepTrue";
+		Assert.assertEquals(true, ProbadorDeColoreo.probar(nombre + ".in", nombre + ".out"));
 	}
 }

@@ -139,4 +139,10 @@ public class TestGeneradores {
 		}
 		Assert.assertEquals(true, exc);
 	}
+	
+	@Test
+	public void profe() throws NodosException, GradoException, IOException, PorcentajeException{
+		GeneradorGrafos.regularGrado(500, 80, "./profe.in");
+		GeneradorGrafos.regularPorAdyacencia(500, 0.16, "./profe2.in");
+	}
 }
