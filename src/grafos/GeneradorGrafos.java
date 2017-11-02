@@ -167,8 +167,9 @@ public class GeneradorGrafos {
 	 * @param cantNodos cantidad de nodos que compondran el grafo.
 	 * @param k cantidad de conjuntos de nodos disconjuntos entre si.
 	 * @throws NodosException 
+	 * @throws IOException 
 	 */
-	public static void kPartito(int cantNodos, int k, String path) throws NodosException{
+	public static void kPartito(int cantNodos, int k, String path) throws NodosException, IOException{
 		int[] pertenencia = new int[cantNodos]; //vector que guarda a que conjunto pertenece cada nodo
 		Grafo grafo = new Grafo(cantNodos);
 		int conj=0;
