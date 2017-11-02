@@ -78,7 +78,7 @@ public class Grafo {
 	 * @param nodo: numero de nodo
 	 * @return cantidad de aristas o grado
 	 */
-	private int getGradoNodo(int nodo){
+	public int getGradoNodo(int nodo){
 		int cont=0;
 		for(int i=0; i<this.cantNodos; i++){
 			if(this.matAdy.getAdyacencia(nodo, i))
@@ -161,22 +161,6 @@ public class Grafo {
 		//System.out.println(grafito.randomCalculado(0.70));
 		grafito.mostrarMatrizAdy();
 		System.out.println();
-		
-		GeneradorGrafos.aleatorioPorAdy(6, 0.7, "./aleatorioPorAdy.in");
-		grafito = new Grafo("./aleatorioPorAdy.in");
-		grafito.getCantNodos();
-		grafito.getPorcentajeAdyReal();
-		System.out.println();
-		
-		grafito = new GrafoAleatorioProb(6, 0.7);
-		grafito.mostrarMatrizAdy();
-		System.out.println();
-		grafito = new GrafoRegularGrado(5, 2);
-		grafito.mostrarMatrizAdy();
-		System.out.println(grafito.getPorcentajeAdyReal());
-		grafito = new GrafoRegularAdy(5, 0.5);
-		grafito.mostrarMatrizAdy();
-		System.out.println(grafito.getPorcentajeAdyReal());
 		
 	}
 	

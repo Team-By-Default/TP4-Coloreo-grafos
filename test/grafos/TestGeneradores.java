@@ -2,29 +2,33 @@ package grafos;
 
 import java.io.IOException;
 
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
-import org.junit.Assert;
-
 public class TestGeneradores {
+	Grafo grafito;
+	
+	/*
+	@Test
+	public void regularPorAdyacencia1() throws PorcentajeException, NodosException, IOException, GradoException{
+		
+		GeneradorGrafos.regularPorAdyacencia(5, 0.5, "./regularPorAdy.in");
+		grafito = new Grafo("./regularPorAdy.in");
+		Assert.assertEquals(5, grafito.getCantNodos());
+		int grado = grafito.getGradoNodo(0);
+		for(int i = 1; i < grafito.getCantNodos(); i++)
+			Assert.assertEquals(grado, grafito.getGradoNodo(i));
+	}*/
 	
 	@Test
-	public void aleatorioPorAdyacencia() throws PorcentajeException, NodosException, IOException{
-		System.out.println("% pedido\t%real");
+	public void regularPorGrado1() throws PorcentajeException, NodosException, IOException, GradoException{
 		
-		GeneradorGrafos.aleatorioPorAdy(6, 0.7, "./aleatorioPorAdy.in");
-		Grafo grafito = new Grafo("./aleatorioPorAdy.in");
-		Assert.assertEquals(6, grafito.getCantNodos());
-		System.out.println("0.7\t" + grafito.getPorcentajeAdyReal());
-		
-		GeneradorGrafos.aleatorioPorAdy(11, 0.5, "./aleatorioPorAdy.in");
-		grafito = new Grafo("./aleatorioPorAdy.in");
-		Assert.assertEquals(11, grafito.getCantNodos());
-		System.out.println("0.5\t" + grafito.getPorcentajeAdyReal());
-		
-		GeneradorGrafos.aleatorioPorAdy(2, 0, "./aleatorioPorAdy.in");
-		grafito = new Grafo("./aleatorioPorAdy.in");
-		Assert.assertEquals(2, grafito.getCantNodos());
-		System.out.println("0\t" + grafito.getPorcentajeAdyReal());
+		GeneradorGrafos.regularGrado(5, 2, "./regularGrado.in");
+		grafito = new Grafo("./regularGrado.in");
+		Assert.assertEquals(5, grafito.getCantNodos());
+		int grado = 2;
+		for(int i = 0; i < grafito.getCantNodos(); i++)
+			Assert.assertEquals(grado, grafito.getGradoNodo(i));
 	}
 }
