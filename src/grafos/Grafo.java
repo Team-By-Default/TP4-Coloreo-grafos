@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Grafo {
@@ -25,6 +26,7 @@ public class Grafo {
 	 */
 	public Grafo(String path) throws FileNotFoundException{
 		Scanner archie = new Scanner(new File(path));
+		archie.useLocale(Locale.ENGLISH);
 		
 		this.cantNodos = archie.nextInt();
 		this.matAdy = new MatrizSimetrica(this.cantNodos);
@@ -54,7 +56,7 @@ public class Grafo {
 		for(int i=0; i<this.cantNodos-1; i++)
 			for(int j=i+1; j<this.cantNodos; j++)
 				if(this.matAdy.getAdyacencia(i, j))
-					arch.println(i+1 + " " + j+1);
+					arch.println(i+1 + " " + (j+1));
 
 		arch.close();
 	}
@@ -149,27 +151,9 @@ public class Grafo {
 		this.matAdy.setAdyacencia(nodo1, nodo2);
 	}
 	
-	//Valeria imponiendo autoridad (?
-	
-	/* Grafo aleatorio por probabilidad se genera con GrafoAleatorioProb
-	public double randomRandom(double d){
-		double value, realAd=0;
-		for(int i=0;i<this.cantNodos-1;i++){
-			for(int j=i+1;j<this.cantNodos;j++){
-				value=Math.random();
-				if(value<=d) {
-					matAdy.setAdyacencia(i, j);
-					realAd++;
-				}
-			}
-		}
-		return 2*(realAd/(this.cantNodos*this.cantNodos-1));
+	public int getCantNodos(){
+		return this.cantNodos;
 	}
-	
-	public double randomCalculado(double d){
-		return matAdy.randomCalculado(d);
-	}
-	*/
 	
 	public static void main(String args[]) throws NodosException, GradoException, PorcentajeException{
 		Grafo grafito=new Grafo(10);
@@ -177,9 +161,13 @@ public class Grafo {
 		//System.out.println(grafito.randomCalculado(0.70));
 		grafito.mostrarMatrizAdy();
 		System.out.println();
-		/*grafito = new GrafoAleatorioPorcentajeAdy(6, 0.7);
-		grafito.mostrarMatrizAdy();
+		
+		GeneradorGrafos.aleatorioPorAdy(6, 0.7, "./aleatorioPorAdy.in");
+		grafito = new Grafo("./aleatorioPorAdy.in");
+		grafito.getCantNodos();
+		grafito.getPorcentajeAdyReal();
 		System.out.println();
+		
 		grafito = new GrafoAleatorioProb(6, 0.7);
 		grafito.mostrarMatrizAdy();
 		System.out.println();
@@ -189,7 +177,7 @@ public class Grafo {
 		grafito = new GrafoRegularAdy(5, 0.5);
 		grafito.mostrarMatrizAdy();
 		System.out.println(grafito.getPorcentajeAdyReal());
-		*/
+		
 	}
 	
 }

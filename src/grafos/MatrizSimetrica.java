@@ -22,15 +22,17 @@ public class MatrizSimetrica {
 	}
 	
 	public boolean getAdyacencia(int f,int c){
-		return this.vec[formulaMagica(f,c)];
+		return f==c ? false : this.vec[formulaMagica(f,c)];
 	}
 	
 	public void setAdyacencia(int f, int c){
-		this.vec[formulaMagica(f,c)] = true;
+		if(f != c)
+			this.vec[formulaMagica(f,c)] = true;
 	}
 	
 	public void unsetAdyacencia(int f, int c){
-		this.vec[formulaMagica(f,c)] = false;
+		if(f != c)
+			this.vec[formulaMagica(f,c)] = false;
 	}
 	
 	public int getCantAdyacencias() {
