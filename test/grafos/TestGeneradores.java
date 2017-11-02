@@ -9,7 +9,11 @@ import org.junit.Test;
 public class TestGeneradores {
 	Grafo grafito;
 	
-	/*
+	@Before
+	public void before(){
+		System.out.println("% ady pedida\t% ady real");
+	}
+	
 	@Test
 	public void regularPorAdyacencia1() throws PorcentajeException, NodosException, IOException, GradoException{
 		
@@ -19,7 +23,45 @@ public class TestGeneradores {
 		int grado = grafito.getGradoNodo(0);
 		for(int i = 1; i < grafito.getCantNodos(); i++)
 			Assert.assertEquals(grado, grafito.getGradoNodo(i));
-	}*/
+		System.out.println("0.5\t" + grafito.getPorcentajeAdyReal());
+	}
+	
+	@Test
+	public void regularPorAdyacencia2() throws PorcentajeException, NodosException, IOException, GradoException{
+		
+		GeneradorGrafos.regularPorAdyacencia(10, 0, "./regularPorAdy.in");
+		grafito = new Grafo("./regularPorAdy.in");
+		Assert.assertEquals(10, grafito.getCantNodos());
+		int grado = grafito.getGradoNodo(0);
+		for(int i = 1; i < grafito.getCantNodos(); i++)
+			Assert.assertEquals(grado, grafito.getGradoNodo(i));
+		System.out.println("0\t" + grafito.getPorcentajeAdyReal());
+	}
+	
+	@Test
+	public void regularPorAdyacencia3() throws PorcentajeException, NodosException, IOException, GradoException{
+		
+		GeneradorGrafos.regularPorAdyacencia(9, 0.9, "./regularPorAdy.in");
+		grafito = new Grafo("./regularPorAdy.in");
+		Assert.assertEquals(9, grafito.getCantNodos());
+		int grado = grafito.getGradoNodo(0);
+		for(int i = 1; i < grafito.getCantNodos(); i++)
+			Assert.assertEquals(grado, grafito.getGradoNodo(i));
+		System.out.println("0.9\t" + grafito.getPorcentajeAdyReal());
+	}
+	
+	@Test
+	public void regularPorAdyacencia4() throws PorcentajeException, NodosException, IOException, GradoException{
+		
+		GeneradorGrafos.regularPorAdyacencia(10, 0.1, "./regularPorAdy.in");
+		grafito = new Grafo("./regularPorAdy.in");
+		Assert.assertEquals(10, grafito.getCantNodos());
+		int grado = grafito.getGradoNodo(0);
+		for(int i = 1; i < grafito.getCantNodos(); i++)
+			Assert.assertEquals(grado, grafito.getGradoNodo(i));
+		System.out.println("0.1\t" + grafito.getPorcentajeAdyReal());
+	}
+	
 	
 	@Test
 	public void regularPorGrado1() throws PorcentajeException, NodosException, IOException, GradoException{
@@ -30,5 +72,27 @@ public class TestGeneradores {
 		int grado = 2;
 		for(int i = 0; i < grafito.getCantNodos(); i++)
 			Assert.assertEquals(grado, grafito.getGradoNodo(i));
+	}
+	
+	@Test
+	public void regularPorGrado3() throws PorcentajeException, NodosException, IOException, GradoException{
+		
+		GeneradorGrafos.regularGrado(4, 3, "./regularGrado.in");
+		grafito = new Grafo("./regularGrado.in");
+		Assert.assertEquals(4, grafito.getCantNodos());
+		int grado = 3;
+		for(int i = 0; i < grafito.getCantNodos(); i++)
+			Assert.assertEquals(grado, grafito.getGradoNodo(i));
+	}
+	
+	@Test
+	public void regularException() throws NodosException, IOException{
+		boolean exc = false;
+		try {
+			GeneradorGrafos.regularGrado(5, 3, "./regularGrado.in");
+		} catch (GradoException e) {
+			exc = true;
+		}
+		Assert.assertEquals(true, exc);
 	}
 }
