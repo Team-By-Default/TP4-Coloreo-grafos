@@ -44,6 +44,7 @@ public class ProbadorDeColoreo {
 				return false;
 			}
 		}
+		
 		System.out.println("El coloreo es correcto");
 		return true;
 	}
