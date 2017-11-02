@@ -2,3 +2,5 @@
 *.in
 
 *.class
+
+*.out
