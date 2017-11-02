@@ -12,11 +12,7 @@ public class ProbadorDeColoreo {
 		Grafo grafo = new Grafo(pathIn);
 		Scanner sc = new Scanner(new File(pathOut));
 		sc.useLocale(Locale.ENGLISH);
-		if(sc.nextInt() != grafo.cantNodos){
-			System.out.println("ERROR: la cantidad de nodos es diferente en el archivo de entrada y de salida.");
-			sc.close();
-			return false;
-		}
+		int cantNodosColoreados = sc.nextInt();
 		int cantColores= sc.nextInt();
 		if(cantColores>grafo.cantNodos){
 			System.out.println("ERROR: hay más colores que nodos");
@@ -29,7 +25,7 @@ public class ProbadorDeColoreo {
 		sc.nextInt(); //Grado min (N/A)
 		HashMap<Integer,Integer> coloreado = new HashMap<Integer,Integer>(grafo.cantNodos);
 		Integer colorPrevio,color,nodo;
-		while(sc.hasNextLine()){
+		for(int i = 0; i < cantNodosColoreados; i++){
 			nodo=sc.nextInt();
 			color=sc.nextInt();
 			colorPrevio=coloreado.put(nodo, color);
