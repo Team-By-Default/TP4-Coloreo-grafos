@@ -43,5 +43,4 @@ public class Vertice implements Comparable{
 		return ( ((Vertice)that).vecinos.size() - this.vecinos.size() );
 	}
 	
-
 }

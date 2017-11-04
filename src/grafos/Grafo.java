@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Locale;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Grafo{
@@ -195,7 +196,33 @@ public class Grafo{
 		imprimir(vertices,path,cantColores);
 	}
 	
-	
+	public void ColoreoMatula(String path) throws IOException{
+		/**
+		 * se usa para los algoritmos de coloreo, 
+		 * vertice contiene color y vecinos de cada nodo.
+		 */
+		Vertice[] vertices = new Vertice[this.cantNodos];
+		/**
+		 * cargo los vecinos para cada vertice
+		 */
+		for(int i=0; i<this.cantNodos; i++){
+			vertices[i] = new Vertice(i+1);
+			for(int j=0; j<this.cantNodos; i++){
+				if(this.matAdy.getAdyacencia(i, j))
+					vertices[i].agregarVecino(j);
+			}
+		}
+		/**
+		 * ordena el vector de vertices por grado de adyacencia de menor a mayor.
+		 */
+		Arrays.sort(vertices);
+		Collections.reverse(Arrays.asList(vertices));
+		/**
+		 * coloreo.
+		 */
+		int cantColores=colorear(vertices);
+		imprimir(vertices,path,cantColores);
+	}
 	
 	public int colorear(Vertice[] vertices){
 		int coloreados=0,color=0,j;
