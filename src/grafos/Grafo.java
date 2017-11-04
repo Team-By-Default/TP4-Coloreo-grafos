@@ -163,9 +163,11 @@ public class Grafo{
 		return this.matAdy.getAdyacencia(fila,columna);
 	}
 	
+	/*
 	public double randomCalculado(double d){
 		return matAdy.randomCalculado(d);
 	}
+	*/
 	
 	public void ColoreoWelshPowell(String path) throws IOException{
 		
