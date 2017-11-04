@@ -6,9 +6,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Locale;
+//import java.util.Random;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Scanner;
+//import java.util.concurrent.ThreadLocalRandom;
 
-public class Grafo {
+public class Grafo{
 
 	private MatrizSimetrica matAdy;
 	protected int cantNodos;
@@ -153,6 +157,148 @@ public class Grafo {
 	
 	public int getCantNodos(){
 		return this.cantNodos;
+	}
+	
+	public boolean getAdyacencia(int fila, int columna){
+		return this.matAdy.getAdyacencia(fila,columna);
+	}
+	
+	public double randomCalculado(double d){
+		return matAdy.randomCalculado(d);
+	}
+	
+	public void ColoreoWelshPowell(String path) throws IOException{
+		
+		//se usa para los algoritmos de coloreo, vertice contiene color y vecinos de cada nodo.
+		Vertice[] vertices = new Vertice[this.cantNodos];
+		
+		//cargo los vecinos para cada vertice.
+		for(int i=0; i<this.cantNodos; i++){
+			vertices[i] = new Vertice(i+1);
+			for(int j=0; j<this.cantNodos; i++){
+				if(this.matAdy.getAdyacencia(i, j))
+					vertices[i].agregarVecino(j);
+			}
+		}
+		
+		//ordena el vector de vertices por grado de adyacencia de mayor a menor.
+		Arrays.sort(vertices);
+		
+		//coloreo
+		int cantColores=colorear(vertices);
+		imprimir(vertices,path,cantColores);
+	}
+	
+	public void ColoreoMatula(String path) throws IOException{
+		
+		//se usa para los algoritmos de coloreo, vertice contiene color y vecinos de cada nodo.
+		Vertice[] vertices = new Vertice[this.cantNodos];
+		
+		// cargo los vecinos para cada vertice
+		for(int i=0; i<this.cantNodos; i++){
+			vertices[i] = new Vertice(i+1);
+			for(int j=0; j<this.cantNodos; i++){
+				if(this.matAdy.getAdyacencia(i, j))
+					vertices[i].agregarVecino(j);
+			}
+		}
+		
+		//ordena el vector de vertices por grado de adyacencia de menor a mayor.
+		Arrays.sort(vertices);
+		Collections.reverse(Arrays.asList(vertices));
+		
+		//coloreo
+		int cantColores=colorear(vertices);
+		imprimir(vertices,path,cantColores);
+	}
+	
+	public void ColoreoSecuencialAleatorio(String path) throws IOException{
+		
+		//se usa para los algoritmos de coloreo, vertice contiene color y vecinos de cada nodo.
+		Vertice[] vertices = new Vertice[this.cantNodos];
+		
+		//cargo los vecinos para cada vertice.
+		for(int i=0; i<this.cantNodos; i++){
+			vertices[i] = new Vertice(i+1);
+			for(int j=0; j<this.cantNodos; i++){
+				if(this.matAdy.getAdyacencia(i, j))
+					vertices[i].agregarVecino(j);
+			}
+		}
+		
+		//Mescla el array de vertices aleatoriamente
+		Collections.shuffle(Arrays.asList(vertices));
+		//mesclaArray(vertices); <--otra opción para mesclar
+		
+		//coloreo
+		int cantColores=colorear(vertices);
+		imprimir(vertices,path,cantColores);
+	}
+	/*
+	  private void mesclaArray(Vertice[] vertices)
+	  {
+	    Random rnd = ThreadLocalRandom.current();
+	    for (int i = vertices.length-1; i>0; i--)
+	    {
+	      int index = rnd.nextInt(i + 1);
+	      //Intercambio
+	      Vertice aux = vertices[index];
+	      vertices[index] = vertices[i];
+	      vertices[i] = aux;
+	    }
+	  }
+	*/
+	private int colorear(Vertice[] vertices){
+		int coloreados=0,color=0,j;
+		//mientras haya nodos sin color sigue coloreando.
+		while(coloreados < this.cantNodos){
+			//tomo el menor color y coloreo todos los nodos que pueda con ï¿½l.
+			for(int i=0; i<this.cantNodos; i++){
+				//si no esta coloreado, me fijo si lo puedo colorear con el color actual.
+				if(vertices[i].getColor() == null){
+					j=0;
+					while(j < vertices[i].getCantVecinos() && color!=vertices[vertices[i].getVecino(j)].getColor())
+						j++;
+					//si ningun vecino tiene este color lo colorea.
+					if(j == vertices[i].getCantVecinos()){
+						vertices[i].setColor(color);
+						coloreados++;
+					}
+				}
+			}
+			color++;
+		}
+		return color+1;
+	}
+	
+	private void imprimir(Vertice[] vertices, String path, int cantColores) throws IOException{
+		PrintWriter pw = new PrintWriter(new FileWriter(path));
+		pw.println(this.cantNodos + " " + cantColores + " " + this.getCantAristas() + " " + this.getPorcentajeAdyReal() + " " + this.calcularGradoMax() + " " + this.calcularGradoMin());
+		for(int i=0; i<this.cantNodos; i++){
+			pw.println(vertices[i].getNroNodo() + " " + vertices[i].getColor());
+		}
+		pw.close();
+	}
+	
+	public static void main(String args[]) throws NodosException, GradoException, PorcentajeException{
+		Grafo grafito=new Grafo(10);
+		//System.out.println(grafito.randomRandom(0.5));
+		//System.out.println(grafito.randomCalculado(0.70));
+		grafito.mostrarMatrizAdy();
+		System.out.println();
+		/*grafito = new GrafoAleatorioPorcentajeAdy(6, 0.7);
+		grafito.mostrarMatrizAdy();
+		System.out.println();
+		grafito = new GrafoAleatorioProb(6, 0.7);
+		grafito.mostrarMatrizAdy();
+		System.out.println();
+		grafito = new GrafoRegularGrado(5, 2);
+		grafito.mostrarMatrizAdy();
+		System.out.println(grafito.getPorcentajeAdyReal());
+		grafito = new GrafoRegularAdy(5, 0.5);
+		grafito.mostrarMatrizAdy();
+		System.out.println(grafito.getPorcentajeAdyReal());
+		*/
 	}
 	
 }
