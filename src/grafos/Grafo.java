@@ -156,10 +156,14 @@ public class Grafo{
 		return this.cantNodos;
 	}
 	
+	public boolean getAdyacencia(int fila, int columna){
+		return this.matAdy.getAdyacencia(fila,columna);
+	}
+	
 	public double randomCalculado(double d){
 		return matAdy.randomCalculado(d);
 	}
-	*/
+	
 	/**
 	 * Algoritmo de Coloraci�n de Welsh y Powell 
 	 * @throws IOException 
