@@ -177,7 +177,7 @@ public class Grafo{
 			vertices[i] = new Vertice(i+1);
 			for(int j=0; j<this.cantNodos; j++){
 				if(this.matAdy.getAdyacencia(i, j))
-					vertices[i].agregarVecino(j);
+					vertices[i].agregarVecino(j+1);
 			}
 		}
 		
@@ -199,7 +199,7 @@ public class Grafo{
 			vertices[i] = new Vertice(i+1);
 			for(int j=0; j<this.cantNodos; j++){
 				if(this.matAdy.getAdyacencia(i, j))
-					vertices[i].agregarVecino(j);
+					vertices[i].agregarVecino(j+1);
 			}
 		}
 		
@@ -221,13 +221,20 @@ public class Grafo{
 		for(int i=0; i<this.cantNodos; i++){
 			vertices[i] = new Vertice(i+1);
 			for(int j=0; j<this.cantNodos; j++){
-				if(this.matAdy.getAdyacencia(i, j))
-					vertices[i].agregarVecino(j);
+				if(this.matAdy.getAdyacencia(i, j)) {
+					vertices[i].agregarVecino(j+1);
+				}
 			}
 		}
 		
 		//Mescla el array de vertices aleatoriamente
 		Collections.shuffle(Arrays.asList(vertices));
+		
+		for(int i=0;i<this.cantNodos;i++) {
+			System.out.println("El nodo "+ vertices[i].getNroNodo()+" tiene estos nodos de vecino: ");
+			for(int j=0;j<vertices[i].getCantVecinos();j++)
+				System.out.println(vertices[i].getVecino(j));
+		}
 		//mesclaArray(vertices); <--otra opci�n para mesclar
 		
 		//coloreo
@@ -249,20 +256,28 @@ public class Grafo{
 	  }
 	*/
 	private int colorear(Vertice[] vertices){
-		int coloreados=0,color=0,j;
+		Integer coloreados=0,color=0,j;
 		//mientras haya nodos sin color sigue coloreando.
 		while(coloreados < this.cantNodos){
+			System.out.println("Color actual: "+color);
 			//tomo el menor color y coloreo todos los nodos que pueda con �l.
 			for(int i=0; i<this.cantNodos; i++){
+				System.out.println("Nodo actual: "+ vertices[i].getNroNodo());
 				//si no esta coloreado, me fijo si lo puedo colorear con el color actual.
 				if(vertices[i].getColor() == null){
 					j=0;
-					while( (j < vertices[i].getCantVecinos()) && (color!=vertices[vertices[i].getVecino(j)].getColor()) )
+					System.out.println("El nodo actual tiene: "+vertices[i].getCantVecinos()+" vecinos");
+					while( (j < vertices[i].getCantVecinos()) && ((vertices[vertices[i].getIndexVecino(vertices, j)].getColor()==null) || (!color.equals(vertices[vertices[i].getIndexVecino(vertices, j)].getColor()))) ) {
+						System.out.println("El vecino actual es el nodo: "+ vertices[i].getVecino(j));
+						System.out.println("El color actual del vecino es: "+vertices[vertices[i].getIndexVecino(vertices, j)].getColor());
+						System.out.println("La posicion del vecino actual es: "+vertices[i].getIndexVecino(vertices, j));
 						j++;
+					}
 					//si ningun vecino tiene este color lo colorea.
 					if(j == vertices[i].getCantVecinos()){
 						vertices[i].setColor(color);
 						coloreados++;
+						System.out.println("Se ha coloreado el nodo "+vertices[i].getNroNodo());
 					}
 				}
 			}
@@ -284,8 +299,6 @@ public class Grafo{
 		Grafo grafito=new Grafo("coloreo.txt");
 		//System.out.println(grafito.randomRandom(0.5));
 		//System.out.println(grafito.randomCalculado(0.70));
-		grafito.mostrarMatrizAdy();
-		System.out.println();
 		grafito.ColoreoSecuencialAleatorio("secuencial.txt");
 		grafito.ColoreoWelshPowell("elescoces.txt");
 		grafito.ColoreoMatula("matula.txt");

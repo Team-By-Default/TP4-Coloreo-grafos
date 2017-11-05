@@ -1,6 +1,7 @@
 package grafos;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Vertice implements Comparable{
 
@@ -14,6 +15,16 @@ public class Vertice implements Comparable{
 		vecinos = new ArrayList<Integer>();
 	}
 	
+	public int getIndexVecino(Vertice[] lista,Integer vecino) {
+		int i=0;
+		while(i<lista.length) {
+			if(lista[i].getNroNodo()== this.getVecino(vecino))
+				return i;
+			i++;
+		}
+		return 0;
+	}
+	
 	public int getNroNodo(){
 		return nroNodo;
 	}
@@ -23,7 +34,7 @@ public class Vertice implements Comparable{
 	}
 	
 	public void setColor(int color){
-		this.color = color;
+		this.color = new Integer(color);
 	}
 	
 	public Integer getColor(){
