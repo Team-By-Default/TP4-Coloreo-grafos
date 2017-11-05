@@ -162,11 +162,11 @@ public class Grafo{
 	public boolean getAdyacencia(int fila, int columna){
 		return this.matAdy.getAdyacencia(fila,columna);
 	}
-	
+	/*
 	public double randomCalculado(double d){
 		return matAdy.randomCalculado(d);
 	}
-	
+	*/
 	public void ColoreoWelshPowell(String path) throws IOException{
 		
 		//se usa para los algoritmos de coloreo, vertice contiene color y vecinos de cada nodo.
@@ -175,7 +175,7 @@ public class Grafo{
 		//cargo los vecinos para cada vertice.
 		for(int i=0; i<this.cantNodos; i++){
 			vertices[i] = new Vertice(i+1);
-			for(int j=0; j<this.cantNodos; i++){
+			for(int j=0; j<this.cantNodos; j++){
 				if(this.matAdy.getAdyacencia(i, j))
 					vertices[i].agregarVecino(j);
 			}
@@ -197,7 +197,7 @@ public class Grafo{
 		// cargo los vecinos para cada vertice
 		for(int i=0; i<this.cantNodos; i++){
 			vertices[i] = new Vertice(i+1);
-			for(int j=0; j<this.cantNodos; i++){
+			for(int j=0; j<this.cantNodos; j++){
 				if(this.matAdy.getAdyacencia(i, j))
 					vertices[i].agregarVecino(j);
 			}
@@ -216,11 +216,11 @@ public class Grafo{
 		
 		//se usa para los algoritmos de coloreo, vertice contiene color y vecinos de cada nodo.
 		Vertice[] vertices = new Vertice[this.cantNodos];
-		
+
 		//cargo los vecinos para cada vertice.
 		for(int i=0; i<this.cantNodos; i++){
 			vertices[i] = new Vertice(i+1);
-			for(int j=0; j<this.cantNodos; i++){
+			for(int j=0; j<this.cantNodos; j++){
 				if(this.matAdy.getAdyacencia(i, j))
 					vertices[i].agregarVecino(j);
 			}
@@ -257,7 +257,7 @@ public class Grafo{
 				//si no esta coloreado, me fijo si lo puedo colorear con el color actual.
 				if(vertices[i].getColor() == null){
 					j=0;
-					while(j < vertices[i].getCantVecinos() && color!=vertices[vertices[i].getVecino(j)].getColor())
+					while( (j < vertices[i].getCantVecinos()) && (color!=vertices[vertices[i].getVecino(j)].getColor()) )
 						j++;
 					//si ningun vecino tiene este color lo colorea.
 					if(j == vertices[i].getCantVecinos()){
@@ -280,12 +280,15 @@ public class Grafo{
 		pw.close();
 	}
 	
-	public static void main(String args[]) throws NodosException, GradoException, PorcentajeException{
-		Grafo grafito=new Grafo(10);
+	public static void main(String args[]) throws NodosException, GradoException, PorcentajeException, IOException{
+		Grafo grafito=new Grafo("coloreo.txt");
 		//System.out.println(grafito.randomRandom(0.5));
 		//System.out.println(grafito.randomCalculado(0.70));
 		grafito.mostrarMatrizAdy();
 		System.out.println();
+		grafito.ColoreoSecuencialAleatorio("secuencial.txt");
+		grafito.ColoreoWelshPowell("elescoces.txt");
+		grafito.ColoreoMatula("matula.txt");
 		/*grafito = new GrafoAleatorioPorcentajeAdy(6, 0.7);
 		grafito.mostrarMatrizAdy();
 		System.out.println();

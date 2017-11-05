@@ -19,7 +19,7 @@ public class Vertice implements Comparable{
 	}
 	
 	public void agregarVecino(int vecino){
-		this.vecinos.add(vecino);
+		this.vecinos.add(new Integer(vecino));
 	}
 	
 	public void setColor(int color){

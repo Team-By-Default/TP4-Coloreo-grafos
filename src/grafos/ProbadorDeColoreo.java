@@ -45,7 +45,7 @@ public class ProbadorDeColoreo {
 		}
 		//chequeo que nodos adyacentes no tengan el mismo color
 		for(int i=0; i<grafo.cantNodos-1; i++){
-			for(int j=i+1; j<grafo.cantNodos; i++){
+			for(int j=i+1; j<grafo.cantNodos; j++){
 				if(grafo.getAdyacencia(i, j) && coloreado.get(i+1)==coloreado.get(j+1)){
 					System.out.println("ERROR: hay nodos adyacentes con el mismo color");
 					return false;
