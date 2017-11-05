@@ -27,12 +27,17 @@ public class Grafo{
 	 * Genera un nodo a partir de un archivo, donde el primer nodo es 1.
 	 * @param path: ruta del archivo.
 	 * @throws FileNotFoundException
+	 * @throws NodosException 
 	 */
-	public Grafo(String path) throws FileNotFoundException{
+	public Grafo(String path) throws FileNotFoundException, NodosException{
 		Scanner archie = new Scanner(new File(path));
 		archie.useLocale(Locale.ENGLISH);
 		
 		this.cantNodos = archie.nextInt();
+		if(cantNodos<1) {
+			archie.close();
+			throw new NodosException("La cantidad de nodos debe ser superior a 0.");
+		}
 		this.matAdy = new MatrizSimetrica(this.cantNodos);
 		int cantAristas = archie.nextInt();
 		archie.nextDouble(); //Porcentaje Ady

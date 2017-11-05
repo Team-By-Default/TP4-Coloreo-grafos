@@ -1,6 +1,5 @@
 package grafos;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.junit.Assert;
@@ -17,7 +16,7 @@ public class TestColoreo {
 	
 	private Grafo grafito;
 	
-	private boolean testear(String path, String coloreo) throws IOException {
+	private boolean testear(String path, String coloreo) throws IOException, NodosException {
 		grafito = new Grafo(path + ".in");
 		grafito.coloreoSecuencialAleatorio(path + coloreo + ".out");
 		System.out.println();
@@ -26,37 +25,37 @@ public class TestColoreo {
 
 	//Secuencial aleatorio
 	@Test
-	public void aleatorioUnNodo() throws IOException{
+	public void aleatorioUnNodo() throws IOException, NodosException{
 		System.out.println("\nTesteando aleatorio con UnNodo");
 		Assert.assertEquals(true, testear(path1, "A"));
 	}
 	
 	@Test
-	public void aleatorio2Nodos2Colores() throws IOException{
+	public void aleatorio2Nodos2Colores() throws IOException, NodosException{
 		System.out.println("\nTesteando aleatorio con 2Nodos2Colores");
 		Assert.assertEquals(true, testear(path2, "A"));
 	}
 	
 	@Test
-	public void aleatorioBipartito() throws IOException{
+	public void aleatorioBipartito() throws IOException, NodosException{
 		System.out.println("\nTesteando aleatorio con Bipartito");
 		Assert.assertEquals(true, testear(path3, "A"));
 	}
 	
 	@Test
-	public void aleatorioTripartito() throws IOException{
+	public void aleatorioTripartito() throws IOException, NodosException{
 		System.out.println("\nTesteando aleatorio con Tripartito");
 		Assert.assertEquals(true, testear(path4, "A"));
 	}
 	
 	@Test
-	public void aleatorioTodoAislado() throws IOException{
+	public void aleatorioTodoAislado() throws IOException, NodosException{
 		System.out.println("\nTesteando aleatorio con TodoAislado");
 		Assert.assertEquals(true, testear(path5, "A"));
 	}
 	
 	@Test
-	public void aleatorioTodoConexo() throws IOException{
+	public void aleatorioTodoConexo() throws IOException, NodosException{
 		System.out.println("\nTesteando aleatorio con TodoConexo");
 		Assert.assertEquals(true, testear(path6, "A"));
 	}

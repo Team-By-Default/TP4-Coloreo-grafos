@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class ProbadorDeColoreo {
 
-	public static boolean probar(String pathIn, String pathOut) throws FileNotFoundException{
+	public static boolean probar(String pathIn, String pathOut) throws FileNotFoundException, NodosException{
 		Grafo grafo = new Grafo(pathIn);
 		Scanner sc = new Scanner(new File(pathOut));
 		sc.useLocale(Locale.ENGLISH);
