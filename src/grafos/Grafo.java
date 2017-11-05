@@ -167,7 +167,7 @@ public class Grafo{
 		return matAdy.randomCalculado(d);
 	}
 	*/
-	public void ColoreoWelshPowell(String path) throws IOException{
+	public void coloreoWelshPowell(String path) throws IOException{
 		
 		//se usa para los algoritmos de coloreo, vertice contiene color y vecinos de cada nodo.
 		Vertice[] vertices = new Vertice[this.cantNodos];
@@ -189,7 +189,7 @@ public class Grafo{
 		imprimir(vertices,path,cantColores);
 	}
 	
-	public void ColoreoMatula(String path) throws IOException{
+	public void coloreoMatula(String path) throws IOException{
 		
 		//se usa para los algoritmos de coloreo, vertice contiene color y vecinos de cada nodo.
 		Vertice[] vertices = new Vertice[this.cantNodos];
@@ -212,7 +212,7 @@ public class Grafo{
 		imprimir(vertices,path,cantColores);
 	}
 	
-	public void ColoreoSecuencialAleatorio(String path) throws IOException{
+	public void coloreoSecuencialAleatorio(String path) throws IOException{
 		
 		//se usa para los algoritmos de coloreo, vertice contiene color y vecinos de cada nodo.
 		Vertice[] vertices = new Vertice[this.cantNodos];
@@ -299,9 +299,9 @@ public class Grafo{
 		Grafo grafito=new Grafo("coloreo.txt");
 		//System.out.println(grafito.randomRandom(0.5));
 		//System.out.println(grafito.randomCalculado(0.70));
-		grafito.ColoreoSecuencialAleatorio("secuencial.txt");
-		grafito.ColoreoWelshPowell("elescoces.txt");
-		grafito.ColoreoMatula("matula.txt");
+		grafito.coloreoSecuencialAleatorio("secuencial.txt");
+		grafito.coloreoWelshPowell("elescoces.txt");
+		grafito.coloreoMatula("matula.txt");
 		/*grafito = new GrafoAleatorioPorcentajeAdy(6, 0.7);
 		grafito.mostrarMatrizAdy();
 		System.out.println();
