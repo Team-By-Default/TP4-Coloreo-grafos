@@ -228,7 +228,7 @@ public class Grafo{
 		
 		//Mescla el array de vertices aleatoriamente
 		Collections.shuffle(Arrays.asList(vertices));
-		//mesclaArray(vertices); <--otra opción para mesclar
+		//mesclaArray(vertices); <--otra opciï¿½n para mesclar
 		
 		//coloreo
 		int cantColores=colorear(vertices);
