@@ -5,8 +5,7 @@ import java.io.IOException;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class TestColoreo {
-	
+public class TestMatula {
 	private String path1 = "./Pruebas coloreo/UnNodo";
 	private String path2 = "./Pruebas coloreo/2Nodos2Colores";
 	private String path3 = "./Pruebas coloreo/Bipartito";
@@ -18,45 +17,45 @@ public class TestColoreo {
 	
 	private boolean testear(String path) throws IOException, NodosException {
 		grafito = new Grafo(path + ".in");
-		grafito.coloreoSecuencialAleatorio(path + "A.out");
+		grafito.coloreoMatula(path + "M.out");
 		System.out.println();
-		return ProbadorDeColoreo.probar(path + ".in", path + "A.out");
+		return ProbadorDeColoreo.probar(path + ".in", path + "M.out");
 	}
 
 	//Secuencial aleatorio
 	@Test
 	public void unNodo() throws IOException, NodosException{
-		System.out.println("\nTesteando aleatorio con UnNodo");
+		System.out.println("\nTesteando matula con UnNodo");
 		Assert.assertEquals(true, testear(path1));
 	}
 	
 	@Test
 	public void es2Nodos2Colores() throws IOException, NodosException{
-		System.out.println("\nTesteando aleatorio con 2Nodos2Colores");
+		System.out.println("\nTesteando matula con 2Nodos2Colores");
 		Assert.assertEquals(true, testear(path2));
 	}
 	
 	@Test
 	public void bipartito() throws IOException, NodosException{
-		System.out.println("\nTesteando aleatorio con Bipartito");
+		System.out.println("\nTesteando Matula con Bipartito");
 		Assert.assertEquals(true, testear(path3));
 	}
 	
 	@Test
 	public void tripartito() throws IOException, NodosException{
-		System.out.println("\nTesteando aleatorio con Tripartito");
+		System.out.println("\nTesteando Matula con Tripartito");
 		Assert.assertEquals(true, testear(path4));
 	}
 	
 	@Test
 	public void todoAislado() throws IOException, NodosException{
-		System.out.println("\nTesteando aleatorio con TodoAislado");
+		System.out.println("\nTesteando Matula con TodoAislado");
 		Assert.assertEquals(true, testear(path5));
 	}
 	
 	@Test
 	public void todoConexo() throws IOException, NodosException{
-		System.out.println("\nTesteando aleatorio con TodoConexo");
+		System.out.println("\nTesteando Matula con TodoConexo");
 		Assert.assertEquals(true, testear(path6));
 	}
 	
