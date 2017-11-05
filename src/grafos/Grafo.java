@@ -58,14 +58,15 @@ public class Grafo{
 	 */
 	public void grabarArchivo(String path) throws IOException{
 		PrintWriter arch = new PrintWriter(new FileWriter(path));
-		
+		System.out.println("prueba arch");
 		arch.println(this.cantNodos + " " + getCantAristas() + " " + getPorcentajeAdyReal()
 			+ " " + calcularGradoMax() + " " + calcularGradoMin());
-		
-		for(int i=0; i<this.cantNodos-1; i++)
+		System.out.println("prueba arch");
+		for(int i=0; i<this.cantNodos-1; i++) {
+			System.out.println("prueba arch");
 			for(int j=i+1; j<this.cantNodos; j++)
 				if(this.matAdy.getAdyacencia(i, j))
-					arch.println(i+1 + " " + (j+1));
+					arch.println(i+1 + " " + (j+1));}
 
 		arch.close();
 	}
@@ -172,7 +173,7 @@ public class Grafo{
 		return matAdy.randomCalculado(d);
 	}
 	*/
-	public void coloreoWelshPowell(String path) throws IOException{
+	public int coloreoWelshPowell(String path) throws IOException{
 		
 		//se usa para los algoritmos de coloreo, vertice contiene color y vecinos de cada nodo.
 		Vertice[] vertices = new Vertice[this.cantNodos];
@@ -192,9 +193,10 @@ public class Grafo{
 		//coloreo
 		int cantColores=colorear(vertices);
 		imprimir(vertices,path,cantColores);
+		return cantColores;
 	}
 	
-	public void coloreoMatula(String path) throws IOException{
+	public int coloreoMatula(String path) throws IOException{
 		
 		//se usa para los algoritmos de coloreo, vertice contiene color y vecinos de cada nodo.
 		Vertice[] vertices = new Vertice[this.cantNodos];
@@ -215,9 +217,10 @@ public class Grafo{
 		//coloreo
 		int cantColores=colorear(vertices);
 		imprimir(vertices,path,cantColores);
+		return cantColores;
 	}
 	
-	public void coloreoSecuencialAleatorio(String path) throws IOException{
+	public int coloreoSecuencialAleatorio(String path) throws IOException{
 		
 		//se usa para los algoritmos de coloreo, vertice contiene color y vecinos de cada nodo.
 		Vertice[] vertices = new Vertice[this.cantNodos];
@@ -245,6 +248,7 @@ public class Grafo{
 		//coloreo
 		int cantColores=colorear(vertices);
 		imprimir(vertices,path,cantColores);
+		return cantColores;
 	}
 	/*
 	  private void mesclaArray(Vertice[] vertices)

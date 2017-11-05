@@ -163,7 +163,7 @@ public class GeneradorGrafos {
 	}
 	
 	/**
-	 * 
+	 * El grafo generado es el de mayores conexiones que pueda tener con esas particiones
 	 * @param cantNodos cantidad de nodos que compondran el grafo.
 	 * @param k cantidad de conjuntos de nodos disconjuntos entre si.
 	 * @throws NodosException 
@@ -179,6 +179,7 @@ public class GeneradorGrafos {
 			pertenencia[i]=conj;
 			conj++;
 		}
+		System.out.println("prueba interna");
 		//recorro cada conjunto posible de nodos
 		for(int i=0;i<cantNodos-1;i++){
 			for(int j=i+1;j<cantNodos;j++){
@@ -187,6 +188,8 @@ public class GeneradorGrafos {
 					grafo.setArista(i,j);
 			}
 		}
+		System.out.println("prueba interna");
 		grafo.grabarArchivo(path);
+		System.out.println("prueba interna");
 	}
 }
