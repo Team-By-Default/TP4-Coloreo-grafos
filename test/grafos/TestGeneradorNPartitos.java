@@ -10,17 +10,12 @@ public class TestGeneradorNPartitos {
 	Grafo grafito;
 	
 	public boolean testearNPartitos(int nodos,int particiones) throws NodosException, IOException {
-		System.out.println("prueba");
 		GeneradorGrafos.kPartito(nodos, particiones, "./kPartito.in");
-		System.out.println("prueba");
 		grafito = new Grafo("./kPartito.in");
-		Assert.assertEquals(nodos, grafito.getCantNodos());
-		System.out.println("prueba");
-		int colores=grafito.coloreoSecuencialAleatorio("grafominimopartito.out");
+		int colores=grafito.coloreoSecuencialAleatorio("kPartito.out");
 		int corridas=0;
-		System.out.println("prueba");
 		while(colores>particiones && corridas<10_000) {
-			colores=grafito.coloreoSecuencialAleatorio("grafominimopartito.out");
+			colores=grafito.coloreoSecuencialAleatorio("kPartito.out");
 			corridas++;
 		}
 		if(corridas==10_000 && colores!=particiones)//si llego a las 10_000 vueltas, y no hallo
@@ -53,8 +48,8 @@ public class TestGeneradorNPartitos {
 		Assert.assertTrue(testearNPartitos(100,100));
 	}
 	
-	/*@Test
+	@Test
 	public void nPartitoFatiga() throws NodosException, IOException {
-		Assert.assertTrue(testearNPartitos(10000,5000));
-	}*/
+		Assert.assertTrue(testearNPartitos(600,300));
+	}
 }
