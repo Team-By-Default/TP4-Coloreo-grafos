@@ -267,7 +267,8 @@ public class Grafo{
 			System.out.println("Color actual: "+color);
 			//tomo el menor color y coloreo todos los nodos que pueda con �l.
 			for(int i=0; i<this.cantNodos; i++){
-				System.out.println("Nodo actual: "+ vertices[i].getNroNodo());
+				//System.out.println("Nodo actual: "+ vertices[i].getNroNodo());
+				System.out.println(vertices[i].toString());
 				//si no esta coloreado, me fijo si lo puedo colorear con el color actual.
 				if(vertices[i].getColor() == null){
 					j=0;
@@ -288,7 +289,7 @@ public class Grafo{
 			}
 			color++;
 		}
-		return color+1;
+		return color;
 	}
 	
 	private void imprimir(Vertice[] vertices, String path, int cantColores) throws IOException{

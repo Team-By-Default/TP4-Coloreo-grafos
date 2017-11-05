@@ -1,9 +1,8 @@
 package grafos;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
-public class Vertice implements Comparable{
+public class Vertice implements Comparable<Vertice>{
 
 	private Integer color;
 	private ArrayList<Integer> vecinos;
@@ -48,10 +47,18 @@ public class Vertice implements Comparable{
 	public int getVecino(int index){
 		return this.vecinos.get(index);
 	}
+	
+	@Override
+	public String toString() {
+		String string=new String("Nodo: "+this.nroNodo+", color: "+this.color+", vecinos: ");
+		for(int i=0;i<this.vecinos.size();i++) {
+			string.concat(this.vecinos.get(i)+" ");
+		}
+		return string;
+	}
 
 	@Override
-	public int compareTo(Object that) {
-		return ( ((Vertice)that).vecinos.size() - this.vecinos.size() );
+	public int compareTo(Vertice that) {
+		return ( that.vecinos.size()-this.vecinos.size() );
 	}
-	
 }
