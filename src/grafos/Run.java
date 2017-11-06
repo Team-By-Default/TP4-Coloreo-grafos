@@ -13,11 +13,9 @@ public class Run {
 		int []vec = new int[grafito.getCantNodos()+1];
 		int min=grafito.coloreoSecuencialAleatorio(null), corrida=0;
 		vec[min]++;
-		grafito.descolorear();
 		System.out.print("0 ");
 		for(int i = 1; i<10000; i++){
 			int aux=grafito.coloreoSecuencialAleatorio(null);
-			grafito.descolorear();
 			vec[aux]++;
 			if(aux<min){
 				min=aux;
@@ -86,7 +84,7 @@ public class Run {
 	
 	public static void main(String arg[]) throws FileNotFoundException, IOException, NodosException{
 		String path = "./Analisis Extadistico/";
-		
+		/*
 		System.out.println("GRAFO ALEATORIO 40%");
 		Grafo grafito1 = new Grafo(path + "grafoAleat40.in");
 		generarTablasAle(grafito1, path + "grafoAleat40");
@@ -98,10 +96,11 @@ public class Run {
 		generarTablasAle(grafito2, path + "grafoAleat60");
 		generarTablasWP(grafito2, path + "grafoAleat60");
 		generarTablasM(grafito2, path + "grafoAleat60");
-		
+		*/
 		System.out.println("GRAFO ALEATORIO 90%");
 		Grafo grafito3 = new Grafo(path + "grafoAleat90.in");
 		generarTablasAle(grafito3, path + "grafoAleat90");
+		/*
 		generarTablasWP(grafito3, path + "grafoAleat90");
 		generarTablasM(grafito3, path + "grafoAleat90");
 		
@@ -116,6 +115,7 @@ public class Run {
 		generarTablasAle(grafito5, path + "grafoRegular75");
 		generarTablasWP(grafito5, path + "grafoRegular75");
 		generarTablasM(grafito5, path + "grafoRegular75");
+		*/
 	}
 
 }

@@ -17,21 +17,16 @@ public class Grafo{
 
 	private MatrizSimetrica matAdy;
 	protected int cantNodos;
-	Vertice[] vertices;
+	int[] vertices;
 	
 	public Grafo(int cantNodos) throws NodosException{
 		if(cantNodos<1)
 			throw new NodosException("La cantidad de nodos debe ser superior a 0.");
 		this.cantNodos = cantNodos;
 		this.matAdy = new MatrizSimetrica(this.cantNodos);
-		vertices = new Vertice[this.cantNodos];
-		for(int i=0; i<this.cantNodos; i++){
-			vertices[i] = new Vertice(i+1);
-			for(int j=0; j<this.cantNodos; j++){
-				if(this.matAdy.getAdyacencia(i, j))
-					vertices[i].agregarVecino(j+1);
-			}
-		}
+		vertices = new int[this.cantNodos];
+		for(int i=0; i<this.cantNodos; i++)
+			vertices[i] = i;
 	}
 	/**
 	 * Genera un nodo a partir de un archivo, donde el primer nodo es 1.
@@ -56,14 +51,9 @@ public class Grafo{
 		
 		for(int i=0; i<cantAristas; i++)
 			setArista(archie.nextInt()-1, archie.nextInt()-1);
-		vertices = new Vertice[this.cantNodos];
-		for(int i=0; i<this.cantNodos; i++){
-			vertices[i] = new Vertice(i+1);
-			for(int j=0; j<this.cantNodos; j++){
-				if(this.matAdy.getAdyacencia(i, j))
-					vertices[i].agregarVecino(j+1);
-			}
-		}
+		vertices = new int[this.cantNodos];
+		for(int i=0; i<this.cantNodos; i++)
+			vertices[i] = i;
 		archie.close();
 	}
 	
@@ -83,11 +73,6 @@ public class Grafo{
 					arch.println(i+1 + " " + (j+1));}
 
 		arch.close();
-	}
-	
-	public void descolorear(){
-		for(int i=0;i<this.cantNodos;i++)
-			this.vertices[i].setColor(null);
 	}
 	
 	public void mostrarMatrizAdy() {
@@ -193,127 +178,74 @@ public class Grafo{
 	}
 	*/
 	public int coloreoWelshPowell(String path) throws IOException{
-		
-		//se usa para los algoritmos de coloreo, vertice contiene color y vecinos de cada nodo.
-		//Vertice[] vertices = new Vertice[this.cantNodos];
-		
-		//cargo los vecinos para cada vertice.
-		/*for(int i=0; i<this.cantNodos; i++){
-			vertices[i] = new Vertice(i+1);
-			for(int j=0; j<this.cantNodos; j++){
-				if(this.matAdy.getAdyacencia(i, j))
-					vertices[i].agregarVecino(j+1);
-			}
-		}*/
-		
-		Collections.shuffle(Arrays.asList(vertices));
-
 		//ordena el vector de vertices por grado de adyacencia de mayor a menor.
+		Collections.shuffle(Arrays.asList(vertices));
 		Arrays.sort(vertices);
-		
 		//coloreo
-		int cantColores=colorear(vertices);
+		int[] colores= new int[this.cantNodos];//0 significa sin color
+		int cantColores=colorear(vertices,colores);
 		if(path!=null)
-			imprimir(vertices,path,cantColores);
+			imprimir(colores,path,cantColores);
 		return cantColores;
 	}
 	
 	public int coloreoMatula(String path) throws IOException{
-		
-		//se usa para los algoritmos de coloreo, vertice contiene color y vecinos de cada nodo.
-		//Vertice[] vertices = new Vertice[this.cantNodos];
-		
-		// cargo los vecinos para cada vertice
-		/*for(int i=0; i<this.cantNodos; i++){
-			vertices[i] = new Vertice(i+1);
-			for(int j=0; j<this.cantNodos; j++){
-				if(this.matAdy.getAdyacencia(i, j))
-					vertices[i].agregarVecino(j+1);
-			}
-		}*/	
-		
-		Collections.shuffle(Arrays.asList(vertices));
-
 		//ordena el vector de vertices por grado de adyacencia de menor a mayor.
+		Collections.shuffle(Arrays.asList(vertices));
 		Arrays.sort(vertices);
 		Collections.reverse(Arrays.asList(vertices));
-		
 		//coloreo
-		int cantColores=colorear(vertices);
+		int[] colores= new int[this.cantNodos];//0 significa sin color
+		int cantColores=colorear(vertices,colores);
 		if(path!=null)
-			imprimir(vertices,path,cantColores);
+			imprimir(colores,path,cantColores);
 		return cantColores;
 	}
 	
 	public int coloreoSecuencialAleatorio(String path) throws IOException{
-		
-		//se usa para los algoritmos de coloreo, vertice contiene color y vecinos de cada nodo.
-		//Vertice[] vertices = new Vertice[this.cantNodos];
-
-		//cargo los vecinos para cada vertice.
-		/*for(int i=0; i<this.cantNodos; i++){
-			vertices[i] = new Vertice(i+1);
-			for(int j=0; j<this.cantNodos; j++){
-				if(this.matAdy.getAdyacencia(i, j))
-					vertices[i].agregarVecino(j+1);
-			}
-		}*/
-		
 		//Mescla el array de vertices aleatoriamente
 		Collections.shuffle(Arrays.asList(vertices));
-		//mesclaArray(vertices); <--otra opci�n para mesclar
-		
 		//coloreo
-		int cantColores=colorear(vertices);
+		int[] colores= new int[this.cantNodos];//0 significa sin color
+		int cantColores=colorear(vertices,colores);
 		if(path!=null)
-			imprimir(vertices,path,cantColores);
+			imprimir(colores,path,cantColores);
 		return cantColores;
 	}
-	/*
-	  private void mesclaArray(Vertice[] vertices)
-	  {
-	    Random rnd = ThreadLocalRandom.current();
-	    for (int i = vertices.length-1; i>0; i--)
-	    {
-	      int index = rnd.nextInt(i + 1);
-	      //Intercambio
-	      Vertice aux = vertices[index];
-	      vertices[index] = vertices[i];
-	      vertices[i] = aux;
-	    }
-	  }
-	*/
-	private int colorear(Vertice[] vertices){
-		Integer coloreados=0,color=0,j;
+
+	private int colorear(int[] orden, int[] colores){
+		int coloreados=0,color=1,j;
+		boolean ban=true;
 		//mientras haya nodos sin color sigue coloreando.
 		while(coloreados < this.cantNodos){
 			//tomo el menor color y coloreo todos los nodos que pueda con �l.
 			for(int i=0; i<this.cantNodos; i++){
 				//si no esta coloreado, me fijo si lo puedo colorear con el color actual.
-				if(vertices[i].getColor() == null){
+				if(colores[i] == 0){
 					j=0;
-					while( (j < vertices[i].getCantVecinos()) && 
-							((vertices[vertices[i].getIndexVecino(vertices, j)].getColor()==null) || 
-									(!color.equals(vertices[vertices[i].getIndexVecino(vertices, j)].getColor()))) ) {
+					ban = true;
+					while(j<this.cantNodos && ban){
+						if(getAdyacencia(i, j) && 
+								color==colores[j])
+								ban=false;
 						j++;
 					}
-					//si ningun vecino tiene este color lo colorea.
-					if(j == vertices[i].getCantVecinos()){
-						vertices[i].setColor(color);
+					if(j == this.cantNodos){
+						colores[i]=color;
 						coloreados++;
 					}
 				}
 			}
 			color++;
 		}
-		return color;
+		return color-1;
 	}
 	
-	private void imprimir(Vertice[] vertices, String path, int cantColores) throws IOException{
+	private void imprimir(int[] colores, String path, int cantColores) throws IOException{
 		PrintWriter pw = new PrintWriter(new FileWriter(path));
 		pw.println(this.cantNodos + " " + cantColores + " " + this.getCantAristas() + " " + this.getPorcentajeAdyReal() + " " + this.calcularGradoMax() + " " + this.calcularGradoMin());
 		for(int i=0; i<this.cantNodos; i++){
-			pw.println(vertices[i].getNroNodo() + " " + vertices[i].getColor());
+			pw.println((i+1) + " " + colores[i]);
 		}
 		pw.close();
 	}
