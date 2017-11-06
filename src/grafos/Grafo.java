@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Locale;
+import java.util.ArrayList;
 //import java.util.Random;
 import java.util.Arrays;
 import java.util.Collections;
@@ -17,16 +18,17 @@ public class Grafo{
 
 	private MatrizSimetrica matAdy;
 	protected int cantNodos;
-	int[] vertices;
+	ArrayList<Vertice> vertices;
 	
 	public Grafo(int cantNodos) throws NodosException{
 		if(cantNodos<1)
 			throw new NodosException("La cantidad de nodos debe ser superior a 0.");
 		this.cantNodos = cantNodos;
 		this.matAdy = new MatrizSimetrica(this.cantNodos);
-		vertices = new int[this.cantNodos];
+		this.vertices = new ArrayList<Vertice>();
+		//vertices = new int[this.cantNodos];
 		for(int i=0; i<this.cantNodos; i++)
-			vertices[i] = i;
+			vertices.add(new Vertice(i,0));
 	}
 	/**
 	 * Genera un nodo a partir de un archivo, donde el primer nodo es 1.
@@ -51,9 +53,12 @@ public class Grafo{
 		
 		for(int i=0; i<cantAristas; i++)
 			setArista(archie.nextInt()-1, archie.nextInt()-1);
-		vertices = new int[this.cantNodos];
+		
+		int [] grados = calcularGrados();
+		this.vertices = new ArrayList<Vertice>();
+		//vertices = new int[this.cantNodos];
 		for(int i=0; i<this.cantNodos; i++)
-			vertices[i] = i;
+			vertices.add(new Vertice(i, grados[i]));
 		archie.close();
 	}
 	
@@ -179,8 +184,10 @@ public class Grafo{
 	*/
 	public int coloreoWelshPowell(String path) throws IOException{
 		//ordena el vector de vertices por grado de adyacencia de mayor a menor.
-		Collections.shuffle(Arrays.asList(vertices));
-		Arrays.sort(vertices);
+		Collections.shuffle(vertices);
+		vertices.sort(null);
+		Collections.reverse(vertices);
+		//Arrays.sort(vertices);
 		//coloreo
 		int[] colores= new int[this.cantNodos];//0 significa sin color
 		int cantColores=colorear(vertices,colores);
@@ -191,9 +198,9 @@ public class Grafo{
 	
 	public int coloreoMatula(String path) throws IOException{
 		//ordena el vector de vertices por grado de adyacencia de menor a mayor.
-		Collections.shuffle(Arrays.asList(vertices));
-		Arrays.sort(vertices);
-		Collections.reverse(Arrays.asList(vertices));
+		Collections.shuffle(vertices);
+		vertices.sort(null);
+		Collections.reverse(vertices);
 		//coloreo
 		int[] colores= new int[this.cantNodos];//0 significa sin color
 		int cantColores=colorear(vertices,colores);
@@ -204,7 +211,7 @@ public class Grafo{
 	
 	public int coloreoSecuencialAleatorio(String path) throws IOException{
 		//Mescla el array de vertices aleatoriamente
-		Collections.shuffle(Arrays.asList(vertices));
+		Collections.shuffle(vertices);
 		//coloreo
 		int[] colores= new int[this.cantNodos];//0 significa sin color
 		int cantColores=colorear(vertices,colores);
@@ -213,25 +220,26 @@ public class Grafo{
 		return cantColores;
 	}
 
-	private int colorear(int[] orden, int[] colores){
-		int coloreados=0,color=1,j;
+	private int colorear(ArrayList<Vertice> orden, int[] colores){
+		int coloreados=0, color=1, ind, j;
 		boolean ban=true;
 		//mientras haya nodos sin color sigue coloreando.
 		while(coloreados < this.cantNodos){
 			//tomo el menor color y coloreo todos los nodos que pueda con �l.
 			for(int i=0; i<this.cantNodos; i++){
+				ind = orden.get(i).getNroNodo();
 				//si no esta coloreado, me fijo si lo puedo colorear con el color actual.
 				if(colores[i] == 0){
 					j=0;
 					ban = true;
 					while(j<this.cantNodos && ban){
-						if(getAdyacencia(i, j) && 
+						if(getAdyacencia(ind, j) && 
 								color==colores[j])
 								ban=false;
 						j++;
 					}
 					if(j == this.cantNodos){
-						colores[i]=color;
+						colores[ind]=color;
 						coloreados++;
 					}
 				}

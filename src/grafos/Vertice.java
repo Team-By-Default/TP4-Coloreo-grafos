@@ -4,14 +4,16 @@ import java.util.ArrayList;
 
 public class Vertice implements Comparable<Vertice>{
 
-	private Integer color;
-	private ArrayList<Integer> vecinos;
+	//private Integer color;
+	//private ArrayList<Integer> vecinos;
 	private int nroNodo;
+	private int grado;
 	
-	public Vertice(int n){
+	public Vertice(int n, int g){
 		nroNodo=n;
-		color=null;
+		//color=null;
 		//vecinos = new ArrayList<Integer>();
+		this.grado = g;
 	}
 	
 	/*public int getIndexVecino(Vertice[] lista,Integer vecino) {
@@ -31,7 +33,7 @@ public class Vertice implements Comparable<Vertice>{
 	public void agregarVecino(int vecino){
 		this.vecinos.add(new Integer(vecino));
 	}
-	*/
+	
 	public void setColor(Integer color){
 		this.color = color;
 	}
@@ -47,7 +49,7 @@ public class Vertice implements Comparable<Vertice>{
 	public int getVecino(int index){
 		return this.vecinos.get(index);
 	}
-	*/
+	
 	@Override
 	public String toString() {
 		String string=new String("Nodo: "+this.nroNodo+", color: "+this.color+", vecinos: ");
@@ -56,9 +58,13 @@ public class Vertice implements Comparable<Vertice>{
 		}
 		return string;
 	}
-
+	*/
+	
+	public int getGrado() {
+		return this.grado;
+	}
 	@Override
 	public int compareTo(Vertice that) {
-		return ( that.vecinos.size()-this.vecinos.size() );
+		return ( that.getGrado()-this.getGrado() );
 	}
 }
