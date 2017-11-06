@@ -17,12 +17,21 @@ public class Grafo{
 
 	private MatrizSimetrica matAdy;
 	protected int cantNodos;
+	Vertice[] vertices;
 	
 	public Grafo(int cantNodos) throws NodosException{
 		if(cantNodos<1)
 			throw new NodosException("La cantidad de nodos debe ser superior a 0.");
 		this.cantNodos = cantNodos;
 		this.matAdy = new MatrizSimetrica(this.cantNodos);
+		vertices = new Vertice[this.cantNodos];
+		for(int i=0; i<this.cantNodos; i++){
+			vertices[i] = new Vertice(i+1);
+			for(int j=0; j<this.cantNodos; j++){
+				if(this.matAdy.getAdyacencia(i, j))
+					vertices[i].agregarVecino(j+1);
+			}
+		}
 	}
 	/**
 	 * Genera un nodo a partir de un archivo, donde el primer nodo es 1.
@@ -47,7 +56,14 @@ public class Grafo{
 		
 		for(int i=0; i<cantAristas; i++)
 			setArista(archie.nextInt()-1, archie.nextInt()-1);
-		
+		vertices = new Vertice[this.cantNodos];
+		for(int i=0; i<this.cantNodos; i++){
+			vertices[i] = new Vertice(i+1);
+			for(int j=0; j<this.cantNodos; j++){
+				if(this.matAdy.getAdyacencia(i, j))
+					vertices[i].agregarVecino(j+1);
+			}
+		}
 		archie.close();
 	}
 	
@@ -67,6 +83,11 @@ public class Grafo{
 					arch.println(i+1 + " " + (j+1));}
 
 		arch.close();
+	}
+	
+	public void descolorear(){
+		for(int i=0;i<this.cantNodos;i++)
+			this.vertices[i].setColor(null);
 	}
 	
 	public void mostrarMatrizAdy() {
@@ -174,16 +195,16 @@ public class Grafo{
 	public int coloreoWelshPowell(String path) throws IOException{
 		
 		//se usa para los algoritmos de coloreo, vertice contiene color y vecinos de cada nodo.
-		Vertice[] vertices = new Vertice[this.cantNodos];
+		//Vertice[] vertices = new Vertice[this.cantNodos];
 		
 		//cargo los vecinos para cada vertice.
-		for(int i=0; i<this.cantNodos; i++){
+		/*for(int i=0; i<this.cantNodos; i++){
 			vertices[i] = new Vertice(i+1);
 			for(int j=0; j<this.cantNodos; j++){
 				if(this.matAdy.getAdyacencia(i, j))
 					vertices[i].agregarVecino(j+1);
 			}
-		}
+		}*/
 		
 		Collections.shuffle(Arrays.asList(vertices));
 
@@ -200,16 +221,16 @@ public class Grafo{
 	public int coloreoMatula(String path) throws IOException{
 		
 		//se usa para los algoritmos de coloreo, vertice contiene color y vecinos de cada nodo.
-		Vertice[] vertices = new Vertice[this.cantNodos];
+		//Vertice[] vertices = new Vertice[this.cantNodos];
 		
 		// cargo los vecinos para cada vertice
-		for(int i=0; i<this.cantNodos; i++){
+		/*for(int i=0; i<this.cantNodos; i++){
 			vertices[i] = new Vertice(i+1);
 			for(int j=0; j<this.cantNodos; j++){
 				if(this.matAdy.getAdyacencia(i, j))
 					vertices[i].agregarVecino(j+1);
 			}
-		}	
+		}*/	
 		
 		Collections.shuffle(Arrays.asList(vertices));
 
@@ -227,16 +248,16 @@ public class Grafo{
 	public int coloreoSecuencialAleatorio(String path) throws IOException{
 		
 		//se usa para los algoritmos de coloreo, vertice contiene color y vecinos de cada nodo.
-		Vertice[] vertices = new Vertice[this.cantNodos];
+		//Vertice[] vertices = new Vertice[this.cantNodos];
 
 		//cargo los vecinos para cada vertice.
-		for(int i=0; i<this.cantNodos; i++){
+		/*for(int i=0; i<this.cantNodos; i++){
 			vertices[i] = new Vertice(i+1);
 			for(int j=0; j<this.cantNodos; j++){
 				if(this.matAdy.getAdyacencia(i, j))
 					vertices[i].agregarVecino(j+1);
 			}
-		}
+		}*/
 		
 		//Mescla el array de vertices aleatoriamente
 		Collections.shuffle(Arrays.asList(vertices));

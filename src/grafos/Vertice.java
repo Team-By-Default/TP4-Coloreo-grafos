@@ -32,8 +32,8 @@ public class Vertice implements Comparable<Vertice>{
 		this.vecinos.add(new Integer(vecino));
 	}
 	
-	public void setColor(int color){
-		this.color = new Integer(color);
+	public void setColor(Integer color){
+		this.color = color;
 	}
 	
 	public Integer getColor(){
