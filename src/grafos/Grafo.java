@@ -296,24 +296,5 @@ public class Grafo{
 		}
 		pw.close();
 	}
-	
-	public static void main(String args[]) throws NodosException, GradoException, PorcentajeException, IOException{
-		GeneradorGrafos.aleatorioPorAdy(600,0.4, "grafoAleat40.in");
-		GeneradorGrafos.aleatorioPorAdy(600,0.6, "grafoAleat60.in");
-		GeneradorGrafos.aleatorioPorAdy(600,0.9, "grafoAleat90.in");
-		GeneradorGrafos.regularPorAdyacencia(1000, 0.5, "grafoRegular50.in");
-		GeneradorGrafos.regularPorAdyacencia(1000, 0.75, "grafoRegular75.in");
 
-		Grafo aleat40 = new Grafo("grafoAleat40.in");
-		Grafo aleat60 = new Grafo("grafoAleat60.in");
-		Grafo aleat90 = new Grafo("grafoAleat90.in");
-		Grafo regular50 = new Grafo("grafoRegular50.in");
-		Grafo regular75 = new Grafo("grafoRegular75.in");
-
-		
-
-
-
-	}
-	
 }
