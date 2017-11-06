@@ -88,12 +88,34 @@ public class Run {
 		String path = "./Analisis Extadistico/";
 		
 		System.out.println("GRAFO ALEATORIO 40%");
-		generarTablasAle(new Grafo(path + "grafoAleat40.in"), path + "grafoAleat40");
-		/*generarTablas(new Grafo(path + "grafoAleat60.in"), path + "grafoAleat60");
-		generarTablas(new Grafo(path + "grafoAleat90.in"), path + "grafoAleat90");
-		generarTablas(new Grafo(path + "grafoRegular50.in"), path + "grafoRegular50");
-		generarTablas(new Grafo(path + "grafoRegular75.in"), path + "grafoRegular75");
-		*/
+		Grafo grafito1 = new Grafo(path + "grafoAleat40.in");
+		generarTablasAle(grafito1, path + "grafoAleat40");
+		generarTablasWP(grafito1, path + "grafoAleat40");
+		generarTablasM(grafito1, path + "grafoAleat40");
+		
+		System.out.println("GRAFO ALEATORIO 60%");
+		Grafo grafito2 = new Grafo(path + "grafoAleat60.in");
+		generarTablasAle(grafito2, path + "grafoAleat60");
+		generarTablasWP(grafito2, path + "grafoAleat60");
+		generarTablasM(grafito2, path + "grafoAleat60");
+		
+		System.out.println("GRAFO ALEATORIO 90%");
+		Grafo grafito3 = new Grafo(path + "grafoAleat90.in");
+		generarTablasAle(grafito3, path + "grafoAleat90");
+		generarTablasWP(grafito3, path + "grafoAleat90");
+		generarTablasM(grafito3, path + "grafoAleat90");
+		
+		System.out.println("GRAFO Regular 50%");
+		Grafo grafito4 = new Grafo(path + "grafoRegular50.in");
+		generarTablasAle(grafito4, path + "grafoRegular50");
+		generarTablasWP(grafito4, path + "grafoRegular50");
+		generarTablasM(grafito4, path + "grafoRegular50");
+		
+		System.out.println("GRAFO Regular 75%");
+		Grafo grafito5 = new Grafo(path + "grafoRegular75.in");
+		generarTablasAle(grafito5, path + "grafoRegular75");
+		generarTablasWP(grafito5, path + "grafoRegular75");
+		generarTablasM(grafito5, path + "grafoRegular75");
 	}
 
 }
