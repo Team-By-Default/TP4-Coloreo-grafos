@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Scanner;
 //import java.util.concurrent.ThreadLocalRandom;
+//import static.Ge
 
 public class Grafo{
 
@@ -184,6 +185,8 @@ public class Grafo{
 			}
 		}
 		
+		Collections.shuffle(Arrays.asList(vertices));
+
 		//ordena el vector de vertices por grado de adyacencia de mayor a menor.
 		Arrays.sort(vertices);
 		
@@ -206,8 +209,10 @@ public class Grafo{
 				if(this.matAdy.getAdyacencia(i, j))
 					vertices[i].agregarVecino(j+1);
 			}
-		}
+		}	
 		
+		Collections.shuffle(Arrays.asList(vertices));
+
 		//ordena el vector de vertices por grado de adyacencia de menor a mayor.
 		Arrays.sort(vertices);
 		Collections.reverse(Arrays.asList(vertices));
@@ -293,25 +298,22 @@ public class Grafo{
 	}
 	
 	public static void main(String args[]) throws NodosException, GradoException, PorcentajeException, IOException{
-		Grafo grafito=new Grafo("coloreo.txt");
-		//System.out.println(grafito.randomRandom(0.5));
-		//System.out.println(grafito.randomCalculado(0.70));
-		grafito.coloreoSecuencialAleatorio("secuencial.txt");
-		grafito.coloreoWelshPowell("elescoces.txt");
-		grafito.coloreoMatula("matula.txt");
-		/*grafito = new GrafoAleatorioPorcentajeAdy(6, 0.7);
-		grafito.mostrarMatrizAdy();
-		System.out.println();
-		grafito = new GrafoAleatorioProb(6, 0.7);
-		grafito.mostrarMatrizAdy();
-		System.out.println();
-		grafito = new GrafoRegularGrado(5, 2);
-		grafito.mostrarMatrizAdy();
-		System.out.println(grafito.getPorcentajeAdyReal());
-		grafito = new GrafoRegularAdy(5, 0.5);
-		grafito.mostrarMatrizAdy();
-		System.out.println(grafito.getPorcentajeAdyReal());
-		*/
+		GeneradorGrafos.aleatorioPorAdy(600,0.4, "grafoAleat40.in");
+		GeneradorGrafos.aleatorioPorAdy(600,0.6, "grafoAleat60.in");
+		GeneradorGrafos.aleatorioPorAdy(600,0.9, "grafoAleat90.in");
+		GeneradorGrafos.regularPorAdyacencia(1000, 0.5, "grafoRegular50.in");
+		GeneradorGrafos.regularPorAdyacencia(1000, 0.75, "grafoRegular75.in");
+
+		Grafo aleat40 = new Grafo("grafoAleat40.in");
+		Grafo aleat60 = new Grafo("grafoAleat60.in");
+		Grafo aleat90 = new Grafo("grafoAleat90.in");
+		Grafo regular50 = new Grafo("grafoRegular50.in");
+		Grafo regular75 = new Grafo("grafoRegular75.in");
+
+		
+
+
+
 	}
 	
 }
