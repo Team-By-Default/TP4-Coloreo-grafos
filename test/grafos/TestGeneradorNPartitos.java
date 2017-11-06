@@ -7,7 +7,7 @@ import org.junit.Test;
 
 public class TestGeneradorNPartitos {
 
-	Grafo grafito;
+	private Grafo grafito;
 	
 	public boolean testearNPartitos(int nodos,int particiones) throws NodosException, IOException {
 		GeneradorGrafos.kPartito(nodos, particiones, "./kPartito.in");
@@ -18,7 +18,7 @@ public class TestGeneradorNPartitos {
 			colores=grafito.coloreoSecuencialAleatorio(null);
 			corridas++;
 		}
-		if(corridas==10_000 && colores!=particiones)//si llego a las 10_000 vueltas, y no hallo
+		if(corridas == 10_000 && colores != particiones)//si llego a las 10_000 vueltas, y no hallo
 			return false;
 		return true;
 	}
