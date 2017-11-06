@@ -15,7 +15,7 @@ public class Run {
 		vec[min]++;
 		grafito.descolorear();
 		System.out.print("0 ");
-		for(int i = 1; i<10; i++){
+		for(int i = 1; i<10000; i++){
 			int aux=grafito.coloreoSecuencialAleatorio(null);
 			grafito.descolorear();
 			vec[aux]++;
@@ -37,7 +37,7 @@ public class Run {
 		vec[min]++;
 		int corrida=0;
 		System.out.print("0 ");
-		for(int i = 1; i<10; i++){
+		for(int i = 1; i<10000; i++){
 			int aux=grafito.coloreoWelshPowell(null);
 			vec[aux]++;
 			if(aux<min){
@@ -58,7 +58,7 @@ public class Run {
 		vec[min]++;
 		int corrida=0;
 		System.out.print("0 ");
-		for(int i = 1; i<10; i++){
+		for(int i = 1; i<10000; i++){
 			int aux=grafito.coloreoMatula(null);
 			vec[aux]++;
 			if(aux<min){
