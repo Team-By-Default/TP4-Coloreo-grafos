@@ -221,7 +221,7 @@ public class Grafo{
 	}
 
 	private int colorear(ArrayList<Vertice> orden, int[] colores){
-		int coloreados=0, color=1, ind, j;
+		int coloreados=0, color = 1, ind, j;
 		boolean ban=true;
 		//mientras haya nodos sin color sigue coloreando.
 		while(coloreados < this.cantNodos){
@@ -229,16 +229,16 @@ public class Grafo{
 			for(int i=0; i<this.cantNodos; i++){
 				ind = orden.get(i).getNroNodo();
 				//si no esta coloreado, me fijo si lo puedo colorear con el color actual.
-				if(colores[i] == 0){
+				if(colores[ind] == 0){
 					j=0;
 					ban = true;
 					while(j<this.cantNodos && ban){
 						if(getAdyacencia(ind, j) && 
-								color==colores[j])
-								ban=false;
+								color == colores[j])
+							ban=false;
 						j++;
 					}
-					if(j == this.cantNodos){
+					if(j == this.cantNodos && ban){
 						colores[ind]=color;
 						coloreados++;
 					}
