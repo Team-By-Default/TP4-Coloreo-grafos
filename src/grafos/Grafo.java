@@ -189,7 +189,8 @@ public class Grafo{
 		
 		//coloreo
 		int cantColores=colorear(vertices);
-		imprimir(vertices,path,cantColores);
+		if(path!=null)
+			imprimir(vertices,path,cantColores);
 		return cantColores;
 	}
 	
@@ -213,7 +214,8 @@ public class Grafo{
 		
 		//coloreo
 		int cantColores=colorear(vertices);
-		imprimir(vertices,path,cantColores);
+		if(path!=null)
+			imprimir(vertices,path,cantColores);
 		return cantColores;
 	}
 	
@@ -226,9 +228,8 @@ public class Grafo{
 		for(int i=0; i<this.cantNodos; i++){
 			vertices[i] = new Vertice(i+1);
 			for(int j=0; j<this.cantNodos; j++){
-				if(this.matAdy.getAdyacencia(i, j)) {
+				if(this.matAdy.getAdyacencia(i, j))
 					vertices[i].agregarVecino(j+1);
-				}
 			}
 		}
 		
@@ -238,7 +239,8 @@ public class Grafo{
 		
 		//coloreo
 		int cantColores=colorear(vertices);
-		imprimir(vertices,path,cantColores);
+		if(path!=null)
+			imprimir(vertices,path,cantColores);
 		return cantColores;
 	}
 	/*
@@ -264,7 +266,9 @@ public class Grafo{
 				//si no esta coloreado, me fijo si lo puedo colorear con el color actual.
 				if(vertices[i].getColor() == null){
 					j=0;
-					while( (j < vertices[i].getCantVecinos()) && ((vertices[vertices[i].getIndexVecino(vertices, j)].getColor()==null) || (!color.equals(vertices[vertices[i].getIndexVecino(vertices, j)].getColor()))) ) {
+					while( (j < vertices[i].getCantVecinos()) && 
+							((vertices[vertices[i].getIndexVecino(vertices, j)].getColor()==null) || 
+									(!color.equals(vertices[vertices[i].getIndexVecino(vertices, j)].getColor()))) ) {
 						j++;
 					}
 					//si ningun vecino tiene este color lo colorea.

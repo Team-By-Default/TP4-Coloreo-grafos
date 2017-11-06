@@ -12,10 +12,10 @@ public class TestGeneradorNPartitos {
 	public boolean testearNPartitos(int nodos,int particiones) throws NodosException, IOException {
 		GeneradorGrafos.kPartito(nodos, particiones, "./kPartito.in");
 		grafito = new Grafo("./kPartito.in");
-		int colores=grafito.coloreoSecuencialAleatorio("kPartito.out");
+		int colores=grafito.coloreoSecuencialAleatorio(null);
 		int corridas=0;
 		while(colores>particiones && corridas<10_000) {
-			colores=grafito.coloreoSecuencialAleatorio("kPartito.out");
+			colores=grafito.coloreoSecuencialAleatorio(null);
 			corridas++;
 		}
 		if(corridas==10_000 && colores!=particiones)//si llego a las 10_000 vueltas, y no hallo
