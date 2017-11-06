@@ -11,10 +11,10 @@ public class Vertice implements Comparable<Vertice>{
 	public Vertice(int n){
 		nroNodo=n;
 		color=null;
-		vecinos = new ArrayList<Integer>();
+		//vecinos = new ArrayList<Integer>();
 	}
 	
-	public int getIndexVecino(Vertice[] lista,Integer vecino) {
+	/*public int getIndexVecino(Vertice[] lista,Integer vecino) {
 		int i=0;
 		while(i<lista.length) {
 			if(lista[i].getNroNodo()== this.getVecino(vecino))
@@ -22,16 +22,16 @@ public class Vertice implements Comparable<Vertice>{
 			i++;
 		}
 		return 0;
-	}
+	}*/
 	
 	public int getNroNodo(){
 		return nroNodo;
 	}
-	
+	/*
 	public void agregarVecino(int vecino){
 		this.vecinos.add(new Integer(vecino));
 	}
-	
+	*/
 	public void setColor(Integer color){
 		this.color = color;
 	}
@@ -39,7 +39,7 @@ public class Vertice implements Comparable<Vertice>{
 	public Integer getColor(){
 		return this.color;
 	}
-	
+	/*
 	public int getCantVecinos(){
 		return this.vecinos.size();
 	}
@@ -47,7 +47,7 @@ public class Vertice implements Comparable<Vertice>{
 	public int getVecino(int index){
 		return this.vecinos.get(index);
 	}
-	
+	*/
 	@Override
 	public String toString() {
 		String string=new String("Nodo: "+this.nroNodo+", color: "+this.color+", vecinos: ");
