@@ -13,9 +13,11 @@ public class Run {
 		int []vec = new int[grafito.getCantNodos()+1];
 		int min=grafito.coloreoSecuencialAleatorio(null), corrida=0;
 		vec[min]++;
+		grafito.descolorear();
 		System.out.print("0 ");
 		for(int i = 1; i<10; i++){
 			int aux=grafito.coloreoSecuencialAleatorio(null);
+			grafito.descolorear();
 			vec[aux]++;
 			if(aux<min){
 				min=aux;
