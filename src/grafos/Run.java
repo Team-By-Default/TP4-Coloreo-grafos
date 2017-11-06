@@ -7,13 +7,14 @@ import java.io.PrintWriter;
 
 public class Run {
 	
-	public static void generarTablas(Grafo grafito, String path) throws IOException{
+	public static void generarTablasAle(Grafo grafito, String path) throws IOException{
 		System.out.println("Comenzando a generar tablas...\nSecuencial aleatorio");
 		
 		int []vec = new int[grafito.getCantNodos()+1];
 		int min=grafito.coloreoSecuencialAleatorio(null), corrida=0;
+		vec[min]++;
 		System.out.print("0 ");
-		for(int i = 1; i<10000; i++){
+		for(int i = 1; i<10; i++){
 			int aux=grafito.coloreoSecuencialAleatorio(null);
 			vec[aux]++;
 			if(aux<min){
@@ -24,12 +25,17 @@ public class Run {
 		}
 		 System.out.println("\nGrabando archivo");
 		grabarTabla(path+"A.txt", min, corrida, vec);
+	}
+	
+	public static void	generarTablasWP(Grafo grafito, String path) throws IOException{
+		System.out.println("Comenzando a generar tablas...\nWelsh Powell");
 		
-		System.out.println("\nWelsh Powell");
-		min=grafito.coloreoWelshPowell(null);
-		corrida=0;
+		int []vec = new int[grafito.getCantNodos()+1];
+		int min=grafito.coloreoWelshPowell(null);
+		vec[min]++;
+		int corrida=0;
 		System.out.print("0 ");
-		for(int i = 1; i<10000; i++){
+		for(int i = 1; i<10; i++){
 			int aux=grafito.coloreoWelshPowell(null);
 			vec[aux]++;
 			if(aux<min){
@@ -41,12 +47,16 @@ public class Run {
 		
 		 System.out.println("\nGrabando archivo");
 		grabarTabla(path+"WP.txt", min, corrida, vec);
-		
-		System.out.println("\nMatula");
-		min=grafito.coloreoMatula(null);
-		corrida=0;
+	}
+	
+	public static void	generarTablasM(Grafo grafito, String path) throws IOException{
+		System.out.println("Comenzando a generar tablas...\nMatula");
+		int []vec = new int[grafito.getCantNodos()+1];
+		int min=grafito.coloreoMatula(null);
+		vec[min]++;
+		int corrida=0;
 		System.out.print("0 ");
-		for(int i = 1; i<10000; i++){
+		for(int i = 1; i<10; i++){
 			int aux=grafito.coloreoMatula(null);
 			vec[aux]++;
 			if(aux<min){
@@ -76,7 +86,7 @@ public class Run {
 		String path = "./Analisis Extadistico/";
 		
 		System.out.println("GRAFO ALEATORIO 40%");
-		generarTablas(new Grafo(path + "grafoAleat40.in"), path + "grafoAleat40");
+		generarTablasAle(new Grafo(path + "grafoAleat40.in"), path + "grafoAleat40");
 		/*generarTablas(new Grafo(path + "grafoAleat60.in"), path + "grafoAleat60");
 		generarTablas(new Grafo(path + "grafoAleat90.in"), path + "grafoAleat90");
 		generarTablas(new Grafo(path + "grafoRegular50.in"), path + "grafoRegular50");
