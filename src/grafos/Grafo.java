@@ -186,7 +186,7 @@ public class Grafo{
 		//ordena el vector de vertices por grado de adyacencia de mayor a menor.
 		Collections.shuffle(vertices);
 		vertices.sort(null);
-		Collections.reverse(vertices);
+		//Collections.reverse(vertices);
 		//Arrays.sort(vertices);
 		//coloreo
 		int[] colores= new int[this.cantNodos];//0 significa sin color
